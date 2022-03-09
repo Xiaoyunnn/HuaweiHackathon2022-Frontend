@@ -29,25 +29,36 @@ export default function ExploreCard() {
               <TouchableWithoutFeedback
                 onPress={() => setIsShowMore(!isShowMore)}
               >
-                <View style={styles.readMoreContainer}>
+                <View>
                   <Text style={styles.postText}>{postDescription}</Text>
-                  <Text style={styles.readMore}>show less</Text>
+                  <View style={styles.readMoreContainer}>
+                    <Text style={styles.dateText}>1 hour ago</Text>
+                    <Text style={styles.readMore}>show less</Text>
+                  </View>
                 </View>
               </TouchableWithoutFeedback>
             ) : (
               <TouchableWithoutFeedback
                 onPress={() => setIsShowMore(!isShowMore)}
               >
-                <View style={styles.readMoreContainer}>
+                <View>
                   <Text style={styles.postText}>
                     {`${postDescription.slice(0, NUM_OF_CHAR)}... `}
                   </Text>
-                  <Text style={styles.readMore}>read more</Text>
+                  <View style={styles.readMoreContainer}>
+                    <Text style={styles.dateText}>1 hour ago</Text>
+                    <Text style={styles.readMore}>read more</Text>
+                  </View>
                 </View>
               </TouchableWithoutFeedback>
             )
           ) : (
-            <Text style={styles.postText}>{postDescription}</Text>
+            <View>
+              <Text style={styles.postText}>{postDescription}</Text>
+              <View style={styles.readMoreContainer}>
+                <Text style={styles.dateText}>1 hour ago</Text>
+              </View>
+            </View>
           )}
         </View>
         <View style={styles.userDetailsContainer}>
@@ -125,14 +136,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   readMoreContainer: {
-    // flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 12,
+    paddingBottom: 5,
+    paddingTop: 3,
   },
   readMore: {
     color: "#647A91",
     fontWeight: "600",
     alignSelf: "flex-end",
-    paddingRight: 12,
-    paddingBottom: 5,
-    paddingTop: 3
+  },
+  dateText: {
+    color: "#8B97A5",
+    fontSize: 12,
   },
 });

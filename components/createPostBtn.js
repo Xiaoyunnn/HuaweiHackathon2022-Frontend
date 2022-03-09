@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     elevation: 3,
     position: "absolute",
     right: 10,
-    top: 150
+    top: 150,
+    zIndex: 2
   },
   postText: {
     color: "#F0940A",

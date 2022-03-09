@@ -14,11 +14,12 @@ import {
 import { TouchableOpacity, Animated, View, Modal } from "react-native";
 import MyTrips from "../screens/myTrips";
 import Notifications from "../screens/notifications";
-import Me from "../screens/me";
+import Me from "../screens/profile";
 import Explore from "../screens/explore";
 import CreateItineraryBtn from "../components/createItineraryBtn";
 import CreatePostBtn from "../components/createPostBtn";
-import Modal from "react-native-modal";
+import { useHeaderHeight } from '@react-navigation/elements';
+import Profile from "../screens/profile";
 
 const Tab = createBottomTabNavigator();
 
@@ -74,6 +75,7 @@ export default function HomeStack() {
       <Tab.Screen
         name="My Trips"
         component={MyTrips}
+        initialParams={{isAdding: isAdding}}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesome name="plane" size={24} color={color} />
@@ -89,9 +91,14 @@ export default function HomeStack() {
                     style={isAdding ? styles.crossBtn : styles.addBtn}
                   />
                 </Animated.View>
-                <Modal visible={isAdding}>
-                  <CreateItineraryBtn />
-                  <CreatePostBtn />
+                <Modal
+                  visible={isAdding}
+                  animationType="fade"
+                  transparent="true"
+                >
+                    <CreateItineraryBtn />
+                    <CreatePostBtn />
+                  <View style={{backgroundColor: "#fff", flex: 1, opacity: "0.5", marginTop: 65, marginBottom: 55}} />
                 </Modal>
               </View>
             </TouchableWithoutFeedback>
@@ -125,8 +132,8 @@ export default function HomeStack() {
         }}
       />
       <Tab.Screen
-        name="Me"
-        component={Me}
+        name="Profile"
+        component={Profile}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesome5
@@ -147,9 +154,11 @@ const styles = StyleSheet.create({
   },
   addBtn: {
     padding: 10,
+    zIndex: 2
   },
   crossBtn: {
     padding: 10,
     transform: "rotate(45deg)",
+    zIndex: 2
   },
 });

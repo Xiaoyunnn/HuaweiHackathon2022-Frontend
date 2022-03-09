@@ -7,7 +7,8 @@ import CreatePostBtn from '../components/createPostBtn';
 import CreateItineraryBtn from '../components/createItineraryBtn';
 import { ScrollView } from 'react-native-web';
 
-export default function MyTrips() {
+export default function MyTrips({route}) {
+  console.log(route);
   return (
     <ScrollView style={globalStyles.tripsContainer}>
       <ItineraryCard/>
