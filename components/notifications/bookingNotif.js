@@ -4,7 +4,7 @@ import { globalStyles } from "../../styles/global";
 
 const BookingNotif = () => {
   return (
-    <View style={globalStyles.notifItemWrapper}>
+    <TouchableOpacity style={globalStyles.notifItemWrapper}>
       <Text style={globalStyles.notifText}>GodHwee wants to book your guide for Haji Lane on 6 Jun 2022 (1100 - 1200)!</Text>
       <View style={styles.reqButtons}>
         <TouchableOpacity
@@ -21,7 +21,7 @@ const BookingNotif = () => {
           <Text style={styles.btnTextBuddy}>REJECT</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   btnContainerAccept: {
     width: "45%",
     padding: 12,
-    marginVertical: 5,
+    marginVertical: 2,
     alignItems: "center",
     borderRadius: 15,
     backgroundColor: "rgb(80, 170, 80)",
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   btnContainerReject: {
     width: "45%",
     padding: 12,
-    marginVertical: 5,
+    marginVertical: 2,
     alignItems: "center",
     borderRadius: 15,
     backgroundColor: "rgb(216, 111, 111)",

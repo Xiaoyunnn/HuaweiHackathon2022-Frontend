@@ -1,10 +1,10 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import React from 'react'
 
 export default function DestinationCard() {
   return (
     <View>
-      <Image/>
+      <Image source={require('../../assets/ussv2.jpeg')} />
       <Text>destinationCard</Text>
     </View>
   )

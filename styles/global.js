@@ -82,16 +82,25 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     color: "#FF9900",
+    marginTop: 10,
+    marginBottom: 7
   },
   notifItemWrapper: {
-    paddingVertical: 15,
-    paddingHorizontal: 40,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderBottomColor: "#A3B3C5",
+    borderBottomColor: "#D2DCE5",
     backgroundColor: "#fff",
   },
   notifText: {
     color: "#647A91",
     lineHeight: 24,
+  },
+  itineraryImageSmall: {
+    height: 160,
+    width: "100%",
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    resizeMode: "cover",
   },
 });

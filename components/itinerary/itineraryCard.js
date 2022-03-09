@@ -1,23 +1,24 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
+import { TouchableWithoutFeedback } from "react-native-web";
 
 export default function ItineraryCard() {
   return (
-    <View style={styles.itineraryContainer}>
-      <View style={styles.itineraryTitleContainer}>
-        <Text style={styles.itineraryTitle} >itineraryCard</Text>
-        <Text>View</Text>
+      <View style={styles.itineraryContainer}>
+        <View style={styles.itineraryTitleContainer}>
+          <Text style={styles.itineraryTitle}>Family Trip June</Text>
+          <TouchableWithoutFeedback onPress={() => console.log("family trip")}>
+            <Text style={styles.itineraryView}>View</Text>
+            </TouchableWithoutFeedback>
+        </View>
+        <Image source={require("../../gbb.jpeg")} style={styles.itineraryImage} />
       </View>
-      <Image />
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   itineraryContainer: {
-    // paddingVertical: 10,
-    // paddingHorizontal: 20,
-    marginBottom: 10,
+    marginBottom: 12,
     backgroundColor: "#fff",
     alignItems: "flex-start",
     borderRadius: 12,
@@ -26,23 +27,33 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  itineraryTitleContainer : {
-    borderRadius: "12 0 0 12",
-},
-  itineraryTitle : {
-      fontWeight: "bold",
-      paddingHorizontal: 20,
-      paddingVertical: 10,
-      color: "#FFA62B",
+  itineraryTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "space-between",
+  },
+  itineraryTitle: {
+    fontWeight: "bold",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    color: "#FFA62B",
+    fontSize: 16
   },
   itineraryView: {
     color: "#A3B3C5",
     paddingHorizontal: 20,
     paddingVertical: 10,
-    alignSelf: "flex-end",
-  }
+  },
+  itineraryImage: {
+    height: 160,
+    width: "100%",
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+    resizeMode: "cover",
+  },
 });

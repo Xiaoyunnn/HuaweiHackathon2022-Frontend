@@ -3,11 +3,11 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-web";
 
-export default function CreatePostBtn() {
+export default function CreateItineraryBtn() {
   return (
     <TouchableOpacity style={styles.btnContainer}>
-      <Ionicons name="images" size={24} color="#F0940A" />
-      <Text style={styles.postText}>Post</Text>
+      <Ionicons name="ios-paper-plane-outline" size={24} color="#fff" />
+      <Text style={styles.postText}>Itinerary</Text>
     </TouchableOpacity>
   );
 }
@@ -15,7 +15,7 @@ export default function CreatePostBtn() {
 const styles = StyleSheet.create({
   btnContainer: {
     borderRadius: "50%",
-    backgroundColor: "#FBF1F1",
+    backgroundColor: "#FEAF42",
     width: 68,
     height: 68,
     justifyContent: "center",
@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     position: "absolute",
-    right: 10,
-    top: 150
+    top: 75,
+    right: 10
   },
   postText: {
-    color: "#F0940A",
+    color: "#fff",
     fontSize: 10,
     marginTop: 2,
   },
