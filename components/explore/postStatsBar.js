@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   statsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 8
+    paddingVertical: 5
   },
   statsText: {
     marginLeft: 2,

@@ -10,10 +10,10 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import PostStatsBar from "./postStatsBar";
 
 export default function ExploreCard() {
-  const NUM_OF_LINES = 2;
-  // const onTextLayout = useCallback(e =>{
-  //   setShowMore(e.nativeEvent.lines.length > NUM_OF_LINES);
-  // }, []);
+  const [isShowMore, setIsShowMore] = useState(false);
+  const NUM_OF_CHAR = 80;
+  const postDescription =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enimad minim veniam,";
 
   return (
     <TouchableWithoutFeedback onPress={() => console.log("pressed")}>
@@ -21,19 +21,34 @@ export default function ExploreCard() {
         <View>
           <Image
             source={require("../../national-gallery.jpeg")}
-            style={globalStyles.itineraryImageSmall}
+            style={styles.exploreImg}
           />
           <Text style={styles.postTitle}>National Gallery</Text>
-          <Text
-            style={styles.postText}
-            numberOfLines={NUM_OF_LINES}
-            ellipsizeMode="tail"
-            // onTextLayout={onTextLayout}
-          >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, ...
-          </Text>
+          {postDescription.length > NUM_OF_CHAR ? (
+            isShowMore ? (
+              <TouchableWithoutFeedback
+                onPress={() => setIsShowMore(!isShowMore)}
+              >
+                <View style={styles.readMoreContainer}>
+                  <Text style={styles.postText}>{postDescription}</Text>
+                  <Text style={styles.readMore}>show less</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            ) : (
+              <TouchableWithoutFeedback
+                onPress={() => setIsShowMore(!isShowMore)}
+              >
+                <View style={styles.readMoreContainer}>
+                  <Text style={styles.postText}>
+                    {`${postDescription.slice(0, NUM_OF_CHAR)}... `}
+                  </Text>
+                  <Text style={styles.readMore}>read more</Text>
+                </View>
+              </TouchableWithoutFeedback>
+            )
+          ) : (
+            <Text style={styles.postText}>{postDescription}</Text>
+          )}
         </View>
         <View style={styles.userDetailsContainer}>
           <View style={styles.userTextContainer}>
@@ -65,6 +80,13 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
   },
+  exploreImg: {
+    height: 250,
+    width: "100%",
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    resizeMode: "cover",
+  },
   postTitle: {
     color: "#647A91",
     paddingTop: 10,
@@ -75,9 +97,8 @@ const styles = StyleSheet.create({
   },
   postText: {
     color: "#647A91",
-    paddingBottom: 10,
     paddingHorizontal: 12,
-    width: "100%"
+    width: "100%",
   },
   userDp: {
     width: 16,
@@ -87,7 +108,7 @@ const styles = StyleSheet.create({
   userTextContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 8,
+    paddingVertical: 5,
   },
   userText: {
     marginLeft: 5,
@@ -102,5 +123,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingHorizontal: 10,
+  },
+  readMoreContainer: {
+    // flexDirection: "row"
+  },
+  readMore: {
+    color: "#647A91",
+    fontWeight: "600",
+    alignSelf: "flex-end",
+    paddingRight: 12,
+    paddingBottom: 5,
+    paddingTop: 3
   },
 });

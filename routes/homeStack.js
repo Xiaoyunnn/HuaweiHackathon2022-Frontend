@@ -11,26 +11,27 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
 } from "react-native-web";
-import { TouchableOpacity, Animated, View } from "react-native";
+import { TouchableOpacity, Animated, View, Modal } from "react-native";
 import MyTrips from "../screens/myTrips";
 import Notifications from "../screens/notifications";
 import Me from "../screens/me";
 import Explore from "../screens/explore";
 import CreateItineraryBtn from "../components/createItineraryBtn";
 import CreatePostBtn from "../components/createPostBtn";
+import Modal from "react-native-modal";
 
 const Tab = createBottomTabNavigator();
 
 export default function HomeStack() {
   const [isAdding, setIsAdding] = useState(false);
   const rotateAnimation = new Animated.Value(0);
-  const fadeAnimation = new Animated.Value(0);
 
   const handleRotateAnimation = () => {
     setIsAdding(!isAdding);
     Animated.timing(rotateAnimation, {
       toValue: 1,
       duration: 300,
+      useNativeDriver: true, // <-- Add this
     }).start(() => {
       rotateAnimation.setValue(0);
     });
@@ -88,8 +89,10 @@ export default function HomeStack() {
                     style={isAdding ? styles.crossBtn : styles.addBtn}
                   />
                 </Animated.View>
-                {isAdding && <CreateItineraryBtn />}
-                {isAdding && <CreatePostBtn/>}
+                <Modal visible={isAdding}>
+                  <CreateItineraryBtn />
+                  <CreatePostBtn />
+                </Modal>
               </View>
             </TouchableWithoutFeedback>
           ),
