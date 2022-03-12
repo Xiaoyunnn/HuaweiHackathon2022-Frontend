@@ -2,9 +2,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function CreateItineraryBtn() {
+export default function CreateItineraryBtn({handlePressItinerary}) {
   return (
-    <TouchableOpacity style={styles.btnContainer}>
+    <TouchableOpacity
+      style={styles.btnContainer}
+      onPress={handlePressItinerary}
+    >
       <Ionicons name="ios-paper-plane-outline" size={24} color="#fff" />
       <Text style={styles.postText}>Itinerary</Text>
     </TouchableOpacity>

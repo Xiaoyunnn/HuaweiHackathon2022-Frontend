@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  Ionicons,
-  FontAwesome5,
-  FontAwesome,
-} from "@expo/vector-icons";
+import { Ionicons, FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import MyTrips from "../screens/myTrips";
 import Notifications from "../screens/notifications";
 import Explore from "../screens/explore";
@@ -16,7 +12,6 @@ import Schedule from "../screens/schedule";
 const Tab = createBottomTabNavigator();
 
 export default function HomeStack() {
-  
   // const rotateAnimation = new Animated.Value(0);
 
   // const handleRotateAnimation = () => {
@@ -67,43 +62,29 @@ export default function HomeStack() {
       <Tab.Screen
         name="My Trips"
         component={Schedule}
-        options={{
+        // options={{
+        // tabBarIcon: ({ focused, color, size }) => (
+        //   <FontAwesome name="plane" size={24} color={color} />
+        // ),
+        //   headerRight: () => (
+        //     <HeaderRightAdd/>
+        //   ),
+        // }}
+        options={({ route, navigation }) => ({
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesome name="plane" size={24} color={color} />
           ),
           headerRight: () => (
-            // <TouchableWithoutFeedback onPress={() => handleRotateAnimation()}>
-            //   <View>
-            //     <Animated.View style={animatedStyle}>
-            //       <Ionicons
-            //         name="ios-add-circle-outline"
-            //         size={30}
-            //         color="#fff"
-            //         style={isAdding ? styles.crossBtn : styles.addBtn}
-            //       />
-            //     </Animated.View>
-            //     <Modal
-            //       visible={isAdding}
-            //       animationType="fade"
-            //       transparent="true"
-            //     >
-            //       <CreateItineraryBtn />
-            //       <CreatePostBtn />
-            //       <View
-            //         style={{
-            //           backgroundColor: "#fff",
-            //           flex: 1,
-            //           opacity: "0.5",
-            //           marginTop: 65,
-            //           marginBottom: 55,
-            //         }}
-            //       />
-            //     </Modal>
-            //   </View>
-            // </TouchableWithoutFeedback>
-            <HeaderRightAdd/>
+            <HeaderRightAdd
+              handlePressItinerary={() =>
+                navigation.navigate("PopularAttractions")
+              }
+              handlePressPost={() =>
+                navigation.navigate("CreatePost")
+              }
+            />
           ),
-        }}
+        })}
       />
       <Tab.Screen
         name="Explore"
@@ -147,5 +128,3 @@ export default function HomeStack() {
     </Tab.Navigator>
   );
 }
-
-

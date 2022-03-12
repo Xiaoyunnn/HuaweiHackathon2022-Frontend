@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { globalStyles } from "../styles/global";
 import ProfileInfo from "../components/profile/profileInfo";
 
-export default function ProfileSetup({navigation}) {
+export default function ProfileSetup({route, navigation}) {
   const [age, setAge] = useState("");
   const [nationality, setNationality] = useState("");
   const [interest, setInterest] = useState("");
@@ -17,6 +17,7 @@ export default function ProfileSetup({navigation}) {
   return (
     <View style={globalStyles.profileSetupContainer}>
       <ProfileInfo
+        username={route.params.username}
         age={age}
         setAge={setAge}
         nationality={nationality}

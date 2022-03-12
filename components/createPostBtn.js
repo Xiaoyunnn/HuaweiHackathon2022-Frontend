@@ -2,9 +2,13 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function CreatePostBtn() {
+export default function CreatePostBtn({handlePressPost}) {
+  const handlePress = () => {
+    
+  }
+  
   return (
-    <TouchableOpacity style={styles.btnContainer}>
+    <TouchableOpacity style={styles.btnContainer} onPress={handlePressPost}>
       <Ionicons name="images" size={24} color="#F0940A" />
       <Text style={styles.postText}>Post</Text>
     </TouchableOpacity>

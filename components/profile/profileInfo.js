@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
 import { globalStyles } from "../../styles/global";
 
-export default function ProfileInfo({age, setAge, nationality, setNationality, interest, setInterest, isEditing}) {
+export default function ProfileInfo({username, age, setAge, nationality, setNationality, interest, setInterest, isEditing}) {
   
   return (
     <View style={{width: "100%", alignItems: "center"}}>
       <Image source={require("../../uss.jpeg")} style={styles.userProfileImg} />
-      <Text style={styles.usernameTitle}>Username</Text>
+      <Text style={styles.usernameTitle}>{username}</Text>
       <TextInput
         label="Age"
         mode="outlined"
