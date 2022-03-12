@@ -2,13 +2,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function CreatePostBtn({handlePressPost}) {
-  const handlePress = () => {
-    
-  }
-  
+export default function CreatePostBtn({ handlePressPost, isGuide }) {
+  const handlePress = () => {};
+
   return (
-    <TouchableOpacity style={styles.btnContainer} onPress={handlePressPost}>
+    <TouchableOpacity
+      style={[styles.btnContainer, isGuide && styles.guideBtnContainer]}
+      onPress={handlePressPost}
+    >
       <Ionicons name="images" size={24} color="#F0940A" />
       <Text style={styles.postText}>Post</Text>
     </TouchableOpacity>
@@ -35,6 +36,9 @@ const styles = StyleSheet.create({
     right: 10,
     top: 90,
     zIndex: 2,
+  },
+  guideBtnContainer: {
+    top: 15,
   },
   postText: {
     color: "#F0940A",

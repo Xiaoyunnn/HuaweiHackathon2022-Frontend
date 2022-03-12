@@ -16,7 +16,11 @@ import {
 import CreateItineraryBtn from "./createItineraryBtn";
 import CreatePostBtn from "./createPostBtn";
 
-export default function HeaderRightAdd({ handlePressItinerary, handlePressPost }) {
+export default function HeaderRightAdd({
+  isGuide,
+  handlePressItinerary,
+  handlePressPost,
+}) {
   const [isAdding, setIsAdding] = useState(false);
   const rotateAnimation = new Animated.Value(0);
 
@@ -45,9 +49,9 @@ export default function HeaderRightAdd({ handlePressItinerary, handlePressPost }
   };
 
   return (
-    <TouchableWithoutFeedback 
-    onPress={async () => handleRotateAnimation()}
-    // onPress={handlePress}
+    <TouchableWithoutFeedback
+      onPress={async () => handleRotateAnimation()}
+      // onPress={handlePress}
     >
       <View>
         <Animated.View style={animatedStyle}>
@@ -61,8 +65,11 @@ export default function HeaderRightAdd({ handlePressItinerary, handlePressPost }
         {/* <Modal visible={isAdding} animationType="fade" transparent={true}> */}
         {isAdding && (
           <View>
-            <CreateItineraryBtn handlePressItinerary={handlePressItinerary}/>
-            <CreatePostBtn handlePressPost={handlePressPost} />
+            {!isGuide && (
+              <CreateItineraryBtn handlePressItinerary={handlePressItinerary} />
+            )}
+
+            <CreatePostBtn handlePressPost={handlePressPost} isGuide={isGuide}/>
           </View>
         )}
         {/* <View

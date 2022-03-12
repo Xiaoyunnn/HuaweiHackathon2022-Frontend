@@ -12,31 +12,7 @@ import Schedule from "../screens/schedule";
 const Tab = createBottomTabNavigator();
 
 export default function HomeStack() {
-  // const rotateAnimation = new Animated.Value(0);
-
-  // const handleRotateAnimation = () => {
-  //   setIsAdding(!isAdding);
-  //   Animated.timing(rotateAnimation, {
-  //     toValue: 1,
-  //     duration: 300,
-  //     useNativeDriver: true, // <-- Add this
-  //   }).start(() => {
-  //     rotateAnimation.setValue(0);
-  //   });
-  // };
-
-  // const interpolateRotating = rotateAnimation.interpolate({
-  //   inputRange: [0, 1],
-  //   outputRange: ["0deg", "45deg"],
-  // });
-
-  // const animatedStyle = {
-  //   transform: [
-  //     {
-  //       rotate: interpolateRotating,
-  //     },
-  //   ],
-  // };
+  const [isGuide, setIsGuide] = useState(false);
 
   return (
     <Tab.Navigator
@@ -60,28 +36,22 @@ export default function HomeStack() {
       })}
     >
       <Tab.Screen
-        name="My Trips"
-        component={Schedule}
-        // options={{
-        // tabBarIcon: ({ focused, color, size }) => (
-        //   <FontAwesome name="plane" size={24} color={color} />
-        // ),
-        //   headerRight: () => (
-        //     <HeaderRightAdd/>
-        //   ),
-        // }}
+        name={isGuide ? "Schedule" : "My Trips"}
+        component={isGuide ? Schedule : MyTrips}
         options={({ route, navigation }) => ({
-          tabBarIcon: ({ focused, color, size }) => (
-            <FontAwesome name="plane" size={24} color={color} />
-          ),
+          tabBarIcon: ({ focused, color, size }) =>
+            isGuide ? (
+              <FontAwesome5 name="calendar-alt" size={24} color={color} />
+            ) : (
+              <FontAwesome name="plane" size={24} color={color} />
+            ),
           headerRight: () => (
             <HeaderRightAdd
+              isGuide={isGuide}
               handlePressItinerary={() =>
-                navigation.navigate("PopularAttractions")
+                navigation.navigate("Popular Attractions")
               }
-              handlePressPost={() =>
-                navigation.navigate("CreatePost")
-              }
+              handlePressPost={() => navigation.navigate("CreatePost")}
             />
           ),
         })}

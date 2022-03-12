@@ -12,13 +12,39 @@ const Stack = createNativeStackNavigator();
 const AuthStack = () => {
   return (
     <Stack.Navigator
-      screenOptions={{ headerShown: false, headerTitleAlign: "center" }}
+      screenOptions={{
+        headerTitleAlign: "center",
+        headerStyle: {
+          backgroundColor: "#FFA62B",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+        headerTitleAlign: "center",
+      }}
     >
-      <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Setup" component={ProfileSetup} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Home" component={HomeStack} />
-      <Stack.Screen name="PopularAttractions" component={PopularAttractions} />
+      <Stack.Screen
+        name="Signup"
+        component={Signup}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Setup"
+        component={ProfileSetup}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeStack}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Popular Attractions" component={PopularAttractions} />
       <Stack.Screen name="CreatePost" component={CreatePost} />
     </Stack.Navigator>
   );
