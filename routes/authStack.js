@@ -44,7 +44,7 @@ const AuthStack = () => {
         component={HomeStack}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Popular Attractions" component={PopularAttractions} />
+      <Stack.Screen name="Create Itinerary" component={PopularAttractions} />
       <Stack.Screen name="CreatePost" component={CreatePost} />
     </Stack.Navigator>
   );

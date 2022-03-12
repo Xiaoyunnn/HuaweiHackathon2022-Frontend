@@ -10,7 +10,7 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "white",
   },
   inputWrapper: {
-    paddingHorizontal: 25,
+    paddingHorizontal: 18,
     borderRadius: 30,
     width: "100%",
     backgroundColor: "#FBF1F1",
@@ -19,12 +19,12 @@ export const globalStyles = StyleSheet.create({
   },
   iconWrapper: {
     marginRight: 7,
-    paddingVertical: 15,
+    paddingVertical: 13,
   },
   input: {
-    paddingVertical: 15,
+    paddingVertical: 13,
     color: "#a17556",
-    width: "100%",
+    width: "86%",
   },
   guideCheckbox: {
     paddingHorizontal: 25,
@@ -40,7 +40,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnContainer: {
     width: "100%",
-    padding: 17,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 30,
@@ -48,7 +48,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnContainerAlt: {
     width: "100%",
-    padding: 15,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 30,
@@ -58,7 +58,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnContainerSq: {
     width: "100%",
-    padding: 17,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 16,
@@ -66,7 +66,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnContainerSqAlt: {
     width: "100%",
-    padding: 15,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 16,
@@ -76,7 +76,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnContainerSmall: {
     width: "49%",
-    padding: 17,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 16,
@@ -84,7 +84,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnContainerAltSmall: {
     width: "49%",
-    padding: 15,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 16,
@@ -94,7 +94,7 @@ export const globalStyles = StyleSheet.create({
   },
   btnLogoutContainer: {
     width: "100%",
-    padding: 15,
+    padding: 12,
     marginVertical: 5,
     alignItems: "center",
     borderRadius: 16,
@@ -105,12 +105,15 @@ export const globalStyles = StyleSheet.create({
   btnText: {
     color: "#fff",
     fontWeight: "bold",
+    fontSize: 18,
   },
   btnTextAlt: {
     color: "#FF9900",
+    fontSize: 18,
   },
   btnLogoutText: {
     color: "#E46767",
+    fontSize: 18,
   },
   passwordHint: {
     fontSize: 10,
@@ -170,5 +173,10 @@ export const globalStyles = StyleSheet.create({
     borderTopRightRadius: 12,
     resizeMode: "cover",
   },
+  adventuresContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  }
   
 });

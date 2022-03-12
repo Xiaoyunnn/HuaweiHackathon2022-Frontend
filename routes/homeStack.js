@@ -49,7 +49,7 @@ export default function HomeStack() {
             <HeaderRightAdd
               isGuide={isGuide}
               handlePressItinerary={() =>
-                navigation.navigate("Popular Attractions")
+                navigation.navigate("Create Itinerary")
               }
               handlePressPost={() => navigation.navigate("CreatePost")}
             />

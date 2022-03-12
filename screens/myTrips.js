@@ -12,7 +12,7 @@ export default function MyTrips({ route }) {
     <ScrollView style={globalStyles.tripsContainer}>
       <ItineraryCard />
       <Text style={globalStyles.font20Orange}>Discover New Adventures</Text>
-      <View style={styles.adventuresContainer}>
+      <View style={globalStyles.adventuresContainer}>
         <ItineraryCardSmall />
         <ItineraryCardSmall />
         <ItineraryCardSmall />
@@ -21,10 +21,3 @@ export default function MyTrips({ route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  adventuresContainer: {
-    flexWrap: "wrap",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-});
