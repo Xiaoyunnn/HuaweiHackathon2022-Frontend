@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   addBtn: {
-    padding: 10,
+    padding: 7,
     zIndex: 2,
   },
   crossBtn: {
-    padding: 10,
+    padding: 7,
     transform: [{ rotate: "45deg" }],
     zIndex: 2,
   },

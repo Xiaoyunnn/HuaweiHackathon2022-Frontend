@@ -10,6 +10,8 @@ import Notifications from "../screens/notifications";
 import Explore from "../screens/explore";
 import Profile from "../screens/profile";
 import HeaderRightAdd from "../components/headerRightAdd";
+import ProfileSetup from "../screens/profileSetup";
+import Schedule from "../screens/schedule";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +45,7 @@ export default function HomeStack() {
 
   return (
     <Tab.Navigator
-      initialRouteName="Explore"
+      initialRouteName="My Trips"
       screenOptions={({ route }) => ({
         headerStyle: {
           backgroundColor: "#FFA62B",
@@ -64,7 +66,7 @@ export default function HomeStack() {
     >
       <Tab.Screen
         name="My Trips"
-        component={MyTrips}
+        component={Schedule}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesome name="plane" size={24} color={color} />

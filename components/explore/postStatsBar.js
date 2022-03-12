@@ -35,7 +35,7 @@ export default function PostStatsBar() {
             setLikeCount(likeCount + 1);
           }}
         >
-          <Ionicons name="md-heart-outline" size={20} color="#E16060" />
+          <Ionicons name="md-heart-outline" size={26} color="#E16060" />
         </TouchableWithoutFeedback>
       )}
       <Text style={styles.statsText}>{likeCount}</Text>
@@ -50,13 +50,13 @@ export default function PostStatsBar() {
         <TouchableWithoutFeedback
           onPress={() => setIsBookmarked(!isBookmarked)}
         >
-          <Ionicons name="bookmark" size={20} color="#FFA62B" />
+          <Ionicons name="bookmark" size={26} color="#FFA62B" />
         </TouchableWithoutFeedback>
       ) : (
         <TouchableWithoutFeedback
           onPress={() => setIsBookmarked(!isBookmarked)}
         >
-          <Ionicons name="bookmark-outline" size={20} color="#FFA62B" />
+          <Ionicons name="bookmark-outline" size={26} color="#FFA62B" />
         </TouchableWithoutFeedback>
       )}
     </View>
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     marginLeft: 2,
     marginRight: 5,
     color: "#647A91",
-    fontSize: 12,
+    fontSize: 14,
   },
 });

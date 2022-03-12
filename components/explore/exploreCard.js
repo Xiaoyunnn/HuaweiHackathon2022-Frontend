@@ -21,9 +21,9 @@ export default function ExploreCard() {
   return (
     <TouchableWithoutFeedback onPress={() => console.log("pressed")}>
       <View style={styles.exploreCardContainer}>
-        <View>
+        <View style={{width: "100%"}}>
           <Image
-            source={require("../../national-gallery.jpeg")}
+            source={require("./national-gallery.jpeg")}
             style={styles.exploreImg}
           />
           <Text style={styles.postTitle}>National Gallery</Text>
@@ -67,7 +67,7 @@ export default function ExploreCard() {
         <View style={styles.userDetailsContainer}>
           <View style={styles.userTextContainer}>
             <Image
-              source={require("../../national-gallery.jpeg")}
+              source={require("./national-gallery.jpeg")}
               style={styles.userDp}
             />
             <Text style={styles.userText}>Username</Text>
@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
     // width: "50%",
   },
   userDp: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
+    width: 24,
+    height: 24,
+    borderRadius: 13,
   },
   userTextContainer: {
     flexDirection: "row",
@@ -127,12 +127,11 @@ const styles = StyleSheet.create({
   userText: {
     marginLeft: 5,
     color: "#647A91",
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: "bold",
   },
   userDetailsContainer: {
     flexDirection: "row",
-    // alignContent: "center",
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
