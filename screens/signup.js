@@ -12,17 +12,19 @@ import { globalStyles } from "../styles/global";
 import validator from "validator";
 import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Checkbox } from "react-native-paper";
 
 export default function Signup({ navigation }) {
   const [username, setUsername] = useState("");
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupCfmPassword, setSignupCfmPassword] = useState("");
+  const [checked, setChecked] = useState(false);
   // const navigation = useNavigation();
 
   const submitSignup = () => {
     // console.warn("sign up");
-    navigation.navigate("Home", { screen: "Todo" });
+    navigation.navigate("Home", { screen: "My Trips" });
     // let isValidEmail = validator.isEmail(signupEmail);
     // if (!isValidEmail) {
     //   Alert.alert("Invalid Email", "Please enter a valid email.");
@@ -115,6 +117,17 @@ export default function Signup({ navigation }) {
           Password must be at least 6 characters with at least 1 UPPER case, 1
           lower case and 1 numeric digit.
         </Text>
+
+        <View style={globalStyles.guideCheckbox}>
+          <Checkbox
+            status={checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setChecked(!checked);
+            }}
+            color="#FFA62B"
+          />
+          <Text style={globalStyles.input}>Sign up as a tour guide.</Text>
+        </View>
 
         <TouchableOpacity
           style={globalStyles.btnContainer}

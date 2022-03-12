@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-web";
 
 export default function CreatePostBtn() {
   return (
@@ -14,7 +13,7 @@ export default function CreatePostBtn() {
 
 const styles = StyleSheet.create({
   btnContainer: {
-    borderRadius: "50%",
+    borderRadius: 68,
     backgroundColor: "#FBF1F1",
     width: 68,
     height: 68,
@@ -30,8 +29,8 @@ const styles = StyleSheet.create({
     elevation: 3,
     position: "absolute",
     right: 10,
-    top: 150,
-    zIndex: 2
+    top: 90,
+    zIndex: 2,
   },
   postText: {
     color: "#F0940A",

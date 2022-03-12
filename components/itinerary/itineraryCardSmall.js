@@ -1,14 +1,26 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
-import { TouchableHighlight, TouchableOpacity, TouchableWithoutFeedback } from "react-native-web";
 import { globalStyles } from "../../styles/global";
 
 export default function ItineraryCardSmall() {
   return (
     <TouchableWithoutFeedback onPress={() => console.log("pressed")}>
       <View style={styles.ItineraryCardSmallContainer}>
-        <Image source={require('../../ussv2.jpeg')} style={globalStyles.itineraryImageSmall}/>
-        <Text style={styles.newAdventureTitle}>Universal Studios Singapore</Text>
+        <Image
+          source={require("../../ussv2.jpeg")}
+          style={globalStyles.itineraryImageSmall}
+        />
+        <Text style={styles.newAdventureTitle}>
+          Universal Studios Singapore
+        </Text>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -35,6 +47,6 @@ const styles = StyleSheet.create({
     color: "#647A91",
     paddingVertical: 10,
     paddingHorizontal: 12,
-    fontWeight: "500"
-  }
+    fontWeight: "500",
+  },
 });

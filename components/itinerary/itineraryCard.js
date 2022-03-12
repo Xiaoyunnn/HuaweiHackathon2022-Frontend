@@ -1,18 +1,23 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableWithoutFeedback,
+} from "react-native";
 import React from "react";
-import { TouchableWithoutFeedback } from "react-native-web";
 
 export default function ItineraryCard() {
   return (
-      <View style={styles.itineraryContainer}>
-        <View style={styles.itineraryTitleContainer}>
-          <Text style={styles.itineraryTitle}>Family Trip June</Text>
-          <TouchableWithoutFeedback onPress={() => console.log("family trip")}>
-            <Text style={styles.itineraryView}>View</Text>
-            </TouchableWithoutFeedback>
-        </View>
-        <Image source={require("../../gbb.jpeg")} style={styles.itineraryImage} />
+    <View style={styles.itineraryContainer}>
+      <View style={styles.itineraryTitleContainer}>
+        <Text style={styles.itineraryTitle}>Family Trip June</Text>
+        <TouchableWithoutFeedback onPress={() => console.log("family trip")}>
+          <Text style={styles.itineraryView}>View</Text>
+        </TouchableWithoutFeedback>
       </View>
+      <Image source={require("../../gbb.jpeg")} style={styles.itineraryImage} />
+    </View>
   );
 }
 
@@ -42,7 +47,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     color: "#FFA62B",
-    fontSize: 16
+    fontSize: 16,
   },
   itineraryView: {
     color: "#A3B3C5",
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   itineraryImage: {
-    height: 160,
+    height: 200,
     width: "100%",
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,

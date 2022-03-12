@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import React, { useState, useCallback } from "react";
 import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
-} from "react-native-web";
+} from "react-native";
+import React, { useState, useCallback } from "react";
 import { globalStyles } from "../../styles/global";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import PostStatsBar from "./postStatsBar";
@@ -29,7 +32,7 @@ export default function ExploreCard() {
               <TouchableWithoutFeedback
                 onPress={() => setIsShowMore(!isShowMore)}
               >
-                <View>
+                <View  style={{ width: "100%"}}>
                   <Text style={styles.postText}>{postDescription}</Text>
                   <View style={styles.readMoreContainer}>
                     <Text style={styles.dateText}>1 hour ago</Text>
@@ -41,7 +44,7 @@ export default function ExploreCard() {
               <TouchableWithoutFeedback
                 onPress={() => setIsShowMore(!isShowMore)}
               >
-                <View>
+                <View  style={{ width: "100%"}}>
                   <Text style={styles.postText}>
                     {`${postDescription.slice(0, NUM_OF_CHAR)}... `}
                   </Text>
@@ -53,7 +56,7 @@ export default function ExploreCard() {
               </TouchableWithoutFeedback>
             )
           ) : (
-            <View>
+            <View  style={{ width: "100%"}}>
               <Text style={styles.postText}>{postDescription}</Text>
               <View style={styles.readMoreContainer}>
                 <Text style={styles.dateText}>1 hour ago</Text>
@@ -109,12 +112,12 @@ const styles = StyleSheet.create({
   postText: {
     color: "#647A91",
     paddingHorizontal: 12,
-    width: "100%",
+    // width: "50%",
   },
   userDp: {
     width: 16,
     height: 16,
-    borderRadius: "50%",
+    borderRadius: 8,
   },
   userTextContainer: {
     flexDirection: "row",

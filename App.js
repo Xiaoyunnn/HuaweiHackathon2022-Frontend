@@ -11,8 +11,8 @@ export default function App() {
     //   <StatusBar style="auto" />
     // </View>
     <NavigationContainer>
-      {/* <AuthStack /> */}
-      <HomeStack/>
+      <AuthStack />
+      {/* <HomeStack/> */}
     </NavigationContainer>
   );
 }

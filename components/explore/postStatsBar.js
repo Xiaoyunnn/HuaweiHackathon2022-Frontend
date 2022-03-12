@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import React, { useState } from "react";
 import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
-} from "react-native-web";
+} from "react-native";
+import React, { useState } from "react";
 import { globalStyles } from "../../styles/global";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -23,7 +26,7 @@ export default function PostStatsBar() {
             setLikeCount(likeCount - 1);
           }}
         >
-          <Ionicons name="md-heart-sharp" size={ 20} color="#E16060" />
+          <Ionicons name="md-heart-sharp" size={20} color="#E16060" />
         </TouchableWithoutFeedback>
       ) : (
         <TouchableWithoutFeedback
@@ -32,13 +35,13 @@ export default function PostStatsBar() {
             setLikeCount(likeCount + 1);
           }}
         >
-          <Ionicons name="md-heart-outline" size={ 20} color="#E16060"  />
+          <Ionicons name="md-heart-outline" size={20} color="#E16060" />
         </TouchableWithoutFeedback>
       )}
       <Text style={styles.statsText}>{likeCount}</Text>
       <MaterialCommunityIcons
         name="comment-processing"
-        size={ 20}
+        size={20}
         color="#A3B3C5"
       />
       <Text style={styles.statsText}>{commentCount}</Text>
@@ -47,13 +50,13 @@ export default function PostStatsBar() {
         <TouchableWithoutFeedback
           onPress={() => setIsBookmarked(!isBookmarked)}
         >
-          <Ionicons name="bookmark" size={ 20} color="#FFA62B"  />
+          <Ionicons name="bookmark" size={20} color="#FFA62B" />
         </TouchableWithoutFeedback>
       ) : (
         <TouchableWithoutFeedback
           onPress={() => setIsBookmarked(!isBookmarked)}
         >
-          <Ionicons name="bookmark-outline" size={ 20} color="#FFA62B"  />
+          <Ionicons name="bookmark-outline" size={20} color="#FFA62B" />
         </TouchableWithoutFeedback>
       )}
     </View>
@@ -64,12 +67,12 @@ const styles = StyleSheet.create({
   statsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 5
+    paddingVertical: 5,
   },
   statsText: {
     marginLeft: 2,
     marginRight: 5,
     color: "#647A91",
     fontSize: 12,
-  }
-})
+  },
+});

@@ -5,7 +5,10 @@ import { globalStyles } from "../../styles/global";
 const BookingNotif = () => {
   return (
     <TouchableOpacity style={globalStyles.notifItemWrapper}>
-      <Text style={globalStyles.notifText}>GodHwee wants to book your guide for Haji Lane on 6 Jun 2022 (1100 - 1200)!</Text>
+      <Text style={globalStyles.notifText}>
+        GodHwee wants to book your guide for Haji Lane on 6 Jun 2022 (1100 -
+        1200)!
+      </Text>
       <View style={styles.reqButtons}>
         <TouchableOpacity
           style={styles.btnContainerAccept}
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  
 });
 
 export default BookingNotif;

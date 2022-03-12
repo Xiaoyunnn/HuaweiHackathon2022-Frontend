@@ -26,6 +26,13 @@ export const globalStyles = StyleSheet.create({
     color: "#a17556",
     width: "100%",
   },
+  guideCheckbox: {
+    paddingHorizontal: 25,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10
+  },
   titleText: {
     fontSize: 28,
     fontWeight: "bold",
@@ -61,9 +68,7 @@ export const globalStyles = StyleSheet.create({
     fontSize: 10,
     color: "#808080",
     paddingHorizontal: "3%",
-    marginBottom: 10,
   },
-  // TODO
   tripsContainer: {
     backgroundColor: "#FFFAFA",
     paddingVertical: 10,
@@ -97,7 +102,7 @@ export const globalStyles = StyleSheet.create({
     lineHeight: 24,
   },
   itineraryImageSmall: {
-    height: 160,
+    height: 175,
     width: "100%",
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,

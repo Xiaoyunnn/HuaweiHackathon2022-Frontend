@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-web";
 
 export default function CreateItineraryBtn() {
   return (
@@ -14,7 +13,7 @@ export default function CreateItineraryBtn() {
 
 const styles = StyleSheet.create({
   btnContainer: {
-    borderRadius: "50%",
+    borderRadius: 68,
     backgroundColor: "#FEAF42",
     width: 68,
     height: 68,
@@ -29,9 +28,9 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     position: "absolute",
-    top: 75,
+    top: 15,
     right: 10,
-    zIndex: 2
+    zIndex: 2,
   },
   postText: {
     color: "#fff",
