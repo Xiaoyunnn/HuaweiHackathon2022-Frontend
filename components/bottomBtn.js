@@ -16,7 +16,7 @@ export default function BottomBtn({handlePress, action}) {
 const styles = StyleSheet.create({
   bottomBtnContainer: {
     // position: "absolute",
-    bottom: 15,
+    bottom: 0,
     alignSelf: "center"
   }
 })

@@ -10,7 +10,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { globalStyles } from "../styles/global";
 import BottomBtn from "../components/bottomBtn";
-import Searchbar from "../components/searchbar";
+import Searchbar from "../components/searchbar/searchbar";
 import AttractionCard from "../components/itinerary/attractionCard";
 
 export default function PopularAttractions({ navigation }) {
@@ -18,7 +18,7 @@ export default function PopularAttractions({ navigation }) {
 
   const sampleData = [
     { attractionName: "Night Safari" },
-    { attractionName: "Sentosa" },
+    { attractionName: "sentosa" },
     { attractionName: "National Gallery" },
   ];
   // initialize to an array of false, size = num of attractions shown
@@ -28,20 +28,41 @@ export default function PopularAttractions({ navigation }) {
     false,
   ]);
 
-  useEffect(() => {
+  const [selectSearchAttraction, setSelectSearchAttraction] = useState([]);
 
-  }, [attractionSelected])
+  useEffect(() => {}, [attractionSelected]);
 
   const handleSelect = (i) => {
-    let attractionArr = attractionSelected;
-    attractionArr[i] = !attractionArr[i];
-    setAttractionSelected(attractionArr);
-    // console.log(attractionSelected);
+    attractionSelected[i] = !attractionSelected[i];
   };
+
+  const navigateNext = () => {
+    let attractionsArr = [];
+    for (let i = 0; i < sampleData.length; i++) {
+      if (attractionSelected[i]) {
+          attractionsArr.push(sampleData[i]);
+      }
+    }
+
+    for (let i = 0; i < selectSearchAttraction.length; i++) {
+      if (!attractionsArr.includes(selectSearchAttraction[i])) {
+          attractionsArr.push(selectSearchAttraction[i]);
+      }
+    }
+
+    navigation.navigate("Preferences", {
+      attractionsArr: attractionsArr,
+    })
+  }
 
   return (
     <View style={globalStyles.tripsContainer}>
-      <Searchbar input={attraction} setInput={setAttraction} />
+      <Searchbar
+        input={attraction}
+        setInput={setAttraction}
+        selectSearchAttraction={selectSearchAttraction}
+        setSelectSearchAttraction={setSelectSearchAttraction}
+      />
       <Text style={styles.title}>You might want to go</Text>
       <ScrollView
         contentContainerStyle={[
@@ -59,7 +80,7 @@ export default function PopularAttractions({ navigation }) {
           />
         ))}
       </ScrollView>
-      <BottomBtn action={"Next"} />
+      <BottomBtn action={"Next"} handlePress={navigateNext}/>
     </View>
   );
 }
@@ -72,7 +93,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 20,
     color: "#FF9900",
-    marginVertical: 5,
+    marginTop: 7,
+    marginBottom: 5,
     paddingHorizontal: 5,
   },
 });

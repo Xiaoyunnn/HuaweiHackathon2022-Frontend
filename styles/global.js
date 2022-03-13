@@ -177,6 +177,9 @@ export const globalStyles = StyleSheet.create({
     flexWrap: "wrap",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  greyText: {
+    color: "#647A91" 
   }
   
 });
