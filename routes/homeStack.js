@@ -8,6 +8,7 @@ import Profile from "../screens/profile";
 import HeaderRightAdd from "../components/headerRightAdd";
 import ProfileSetup from "../screens/profileSetup";
 import Schedule from "../screens/schedule";
+import Preferences from "../screens/preferences";
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +38,7 @@ export default function HomeStack() {
     >
       <Tab.Screen
         name={isGuide ? "Schedule" : "My Trips"}
-        component={isGuide ? Schedule : MyTrips}
+        component={isGuide ? Schedule : Preferences}
         options={({ route, navigation }) => ({
           tabBarIcon: ({ focused, color, size }) =>
             isGuide ? (

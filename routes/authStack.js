@@ -7,6 +7,7 @@ import ProfileSetup from "../screens/profileSetup";
 import PopularAttractions from "../screens/popularAttractions";
 import CreatePost from "../screens/createPost";
 import Preferences from "../screens/preferences";
+import GeneratedItinerary from "../screens/generatedItinerary";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,7 @@ const AuthStack = () => {
       />
       <Stack.Screen name="Create Itinerary" component={PopularAttractions} />
       <Stack.Screen name="Preferences" component={Preferences} />
+      <Stack.Screen name="Generated Itinerary" component={GeneratedItinerary} />
       <Stack.Screen name="CreatePost" component={CreatePost} />
     </Stack.Navigator>
   );
