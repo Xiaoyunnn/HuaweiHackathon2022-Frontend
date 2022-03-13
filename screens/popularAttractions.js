@@ -40,20 +40,20 @@ export default function PopularAttractions({ navigation }) {
     let attractionsArr = [];
     for (let i = 0; i < sampleData.length; i++) {
       if (attractionSelected[i]) {
-          attractionsArr.push(sampleData[i]);
+        attractionsArr.push(sampleData[i]);
       }
     }
 
     for (let i = 0; i < selectSearchAttraction.length; i++) {
       if (!attractionsArr.includes(selectSearchAttraction[i])) {
-          attractionsArr.push(selectSearchAttraction[i]);
+        attractionsArr.push(selectSearchAttraction[i]);
       }
     }
 
     navigation.navigate("Preferences", {
       attractionsArr: attractionsArr,
-    })
-  }
+    });
+  };
 
   return (
     <View style={globalStyles.tripsContainer}>
@@ -80,7 +80,7 @@ export default function PopularAttractions({ navigation }) {
           />
         ))}
       </ScrollView>
-      <BottomBtn action={"Next"} handlePress={navigateNext}/>
+      <BottomBtn action={"Next"} handlePress={navigateNext} />
     </View>
   );
 }
