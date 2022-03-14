@@ -26,9 +26,9 @@ export default function GeneratedItinerary({ route, navigation }) {
       {active == 1 ? (
         <DestinationList destinations={sampleDestination}/>
       ) : active == 2 ? (
-        <DestinationList />
+        <DestinationList destinations={sampleDestination}/>
       ) : (
-        <DestinationList />
+        <DestinationList destinations={sampleDestination}/>
       )}
     </View>
   );

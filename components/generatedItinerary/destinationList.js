@@ -4,7 +4,7 @@ import DayTabBar from "./dayTabBar";
 import { globalStyles } from "../../styles/global";
 import DestinationCard from "./destinationCard";
 
-export default function DestinationList() {
+export default function DestinationList({ destinations }) {
   const numDays = 3;
   const [daySelected, setDaySelected] = useState(0);
 
@@ -16,12 +16,17 @@ export default function DestinationList() {
   const renderSelectedDay = () => {
     for (let i = 0; i < numDays; i++) {
       if (i == daySelected) {
-        return <View>
-          <DestinationCard/>
-        </View>
+        // map the destination card for different days
+        return (
+          <View>
+            {destinations.map((destination, i) => (
+              <DestinationCard />
+            ))}
+          </View>
+        );
       }
     }
-  }
+  };
 
   return (
     <ScrollView>
@@ -31,14 +36,12 @@ export default function DestinationList() {
       />
       <Text style={styles.tripTitle}>Family Trip</Text>
       <Text style={styles.tripSubtitle}>3 Days | 8 attractions</Text>
-        <DayTabBar
-          numDays={numDays}
-          daySelected={daySelected}
-          setDaySelected={handleSelectDay}
-        />
-        {renderSelectedDay()}
-        
-      
+      <DayTabBar
+        numDays={numDays}
+        daySelected={daySelected}
+        setDaySelected={handleSelectDay}
+      />
+      {renderSelectedDay()}
     </ScrollView>
   );
 }

@@ -1,22 +1,20 @@
-import { View, Text, Image, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 import Dash from "react-native-dash";
 import {
   SimpleLineIcons,
   MaterialCommunityIcons,
   AntDesign,
-  FontAwesome5
+  FontAwesome5,Entypo
 } from "@expo/vector-icons";
+import { globalStyles } from "../../styles/global.js";
 
 export default function DestinationCard() {
+  // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
+  const [bookingStatus, setBookingStatus] = useState(1);
+
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        paddingHorizontal: 5,
-        justifyContent: "space-between",
-      }}
-    >
+    <View style={styles.descriptionCardContainer}>
       <View style={{ alignItems: "center" }}>
         <MaterialCommunityIcons
           name="sign-direction"
@@ -35,17 +33,61 @@ export default function DestinationCard() {
           source={require("../../night-safari.jpeg")}
           style={styles.destinationImg}
         />
-        <View style={{ width: "52%" }}>
-          <Text style={styles.cardTitle}>Night Safari</Text>
-          <View style={styles.iconsWrapper}>
-            <AntDesign name="star" size={16} color="#FECF72" />
-            <Text style={styles.ratingText}>4.5</Text>
-            <MaterialCommunityIcons name="clock-time-two" size={16} color="#A3B3C5" />
-            <Text style={styles.durationText}>2h</Text>
-            <MaterialCommunityIcons name="cash-usd-outline" size={20} color="#52AA6B" />
-            <Text style={styles.costText}>$30</Text>
-          </View>
-          <Text style={styles.cardDescription}>Experience a mind-boggling world of 3D adventure at the Trick Eye Museum in Singapore!</Text>
+        <View style={styles.descriptionWrapper}>
+          <TouchableOpacity>
+            <Text style={styles.cardTitle}>Night Safari</Text>
+            <View style={styles.iconsWrapper}>
+              <AntDesign name="star" size={16} color="#FECF72" />
+              <Text style={styles.ratingText}>4.5</Text>
+              <MaterialCommunityIcons
+                name="clock-time-two"
+                size={16}
+                color="#A3B3C5"
+              />
+              <Text style={styles.durationText}>2h</Text>
+              <MaterialCommunityIcons
+                name="cash-usd-outline"
+                size={20}
+                color="#52AA6B"
+              />
+              <Text style={styles.costText}>$30</Text>
+            </View>
+            <Text style={styles.cardDescription} numberOfLines={3}>
+              Experience a mind-boggling world of 3D adventure at the Trick Eye
+              Museum in Singapore!
+            </Text>
+          </TouchableOpacity>
+
+          {bookingStatus == 0 ? (
+            <TouchableOpacity
+              style={[globalStyles.btnContainerSq, styles.bookBtn]}
+              // onPress={handlePress}
+            >
+              <Text style={[globalStyles.btnText, styles.bookText]}>
+                Book Tour Guide
+              </Text>
+            </TouchableOpacity>
+          ) : bookingStatus == 1 ? (
+            <TouchableOpacity
+              style={[globalStyles.btnContainerSqAlt, styles.guideBtn]}
+              // onPress={handlePress}
+            >
+              <Text style={[globalStyles.btnText, styles.pendingText]}>
+                Pending
+              </Text>
+              <Entypo name="cross" size={18} color="#DE4A4A" onPress={()=> setBookingStatus(0)} />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              style={[globalStyles.btnContainerSqAlt, styles.guideBtn]}
+              // onPress={handlePress}
+            >
+              <Text style={[globalStyles.btnText, styles.guideText]}>
+                Tour Guide (0800 - 1000)
+              </Text>
+              <Entypo name="cross" size={18} color="#DE4A4A" onPress={()=> setBookingStatus(0)} />
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </View>
@@ -57,6 +99,12 @@ const styles = StyleSheet.create({
     width: 1,
     height: 160,
     flexDirection: "column",
+  },
+  descriptionCardContainer: {
+    flexDirection: "row",
+    paddingHorizontal: 5,
+    justifyContent: "space-between",
+    marginBottom: 12,
   },
   destinationCardWrapper: {
     backgroundColor: "#fff",
@@ -81,39 +129,67 @@ const styles = StyleSheet.create({
     width: "43%",
     borderRadius: 10,
   },
+  descriptionWrapper: {
+    width: "52%",
+    height: "100%",
+    justifyContent: "space-between",
+  },
   cardTitle: {
-    color:"#647A91",
+    color: "#647A91",
     fontWeight: "bold",
     fontSize: 16,
-    marginTop: 5
+    marginTop: 5,
   },
   iconsWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 5
+    marginVertical: 5,
   },
   ratingText: {
     color: "#FFBD59",
     fontWeight: "bold",
     marginLeft: 3,
     marginRight: 6,
-    fontSize: 14
+    fontSize: 14,
   },
   durationText: {
     color: "#A3B3C5",
     fontWeight: "bold",
     marginLeft: 3,
     marginRight: 6,
-    fontSize: 14
+    fontSize: 14,
   },
   costText: {
     color: "#52AA6B",
     fontWeight: "bold",
     marginLeft: 3,
     marginRight: 6,
-    fontSize: 14
+    fontSize: 14,
   },
   cardDescription: {
-    color: "#647A91"
+    color: "#647A91",
+  },
+  bookText: {
+    fontSize: 14,
+  },
+  bookBtn: {
+    borderRadius: 12
+  },
+  guideText: {
+    fontSize: 9.5,
+    color: "#FF9900",
+  },
+  guideBtn: {
+    paddingVertical: 8,
+    paddingLeft: 8,
+    paddingRight: 5,
+    alignItems: "center",
+    borderRadius: 12,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  pendingText: {
+    fontSize: 14,
+    color: "#FF9900",
   }
 });
