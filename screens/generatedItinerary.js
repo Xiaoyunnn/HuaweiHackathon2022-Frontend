@@ -12,6 +12,12 @@ export default function GeneratedItinerary({ route, navigation }) {
     setActive(index);
   };
 
+  const handleNavigateBooking = (attraction) => {
+    navigation.navigate("Find Tour Guide", {
+      attraction: attraction
+    });
+  }
+
   // console.log(route.params)
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -24,11 +30,11 @@ export default function GeneratedItinerary({ route, navigation }) {
   return (
     <View style={{flex: 1, backgroundColor: "#FFFAFA"}}>
       {active == 1 ? (
-        <DestinationList destinations={sampleDestination}/>
+        <DestinationList destinations={sampleDestination} handleNavigateBooking={handleNavigateBooking}/>
       ) : active == 2 ? (
-        <DestinationList destinations={sampleDestination}/>
+        <DestinationList destinations={sampleDestination} handleNavigateBooking={handleNavigateBooking}/>
       ) : (
-        <DestinationList destinations={sampleDestination}/>
+        <DestinationList destinations={sampleDestination} handleNavigateBooking={handleNavigateBooking}/>
       )}
     </View>
   );

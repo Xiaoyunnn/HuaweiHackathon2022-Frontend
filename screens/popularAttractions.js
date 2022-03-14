@@ -62,6 +62,7 @@ export default function PopularAttractions({ navigation }) {
         setInput={setAttraction}
         selectSearchAttraction={selectSearchAttraction}
         setSelectSearchAttraction={setSelectSearchAttraction}
+        type={"attractions"}
       />
       <Text style={styles.title}>You might want to go</Text>
       <ScrollView

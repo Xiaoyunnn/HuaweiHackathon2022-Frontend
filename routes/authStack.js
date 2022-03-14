@@ -9,6 +9,9 @@ import CreatePost from "../screens/createPost";
 import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
 import RoutesHeaderBar from "../components/generatedItinerary/routesHeaderBar";
+import FindGuide from "../screens/findGuide";
+import GuideOverview from "../screens/guideOverview";
+import AttractionOverview from "../screens/attractionOverview";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +57,9 @@ const AuthStack = () => {
         component={GeneratedItinerary}
         // options={{ headerTitle: () => <RoutesHeaderBar /> }}
       />
+      <Stack.Screen name="Find Tour Guide" component={FindGuide} />
+      <Stack.Screen name="Guide Overview" component={GuideOverview} />
+      <Stack.Screen name="Attraction Overview" component={AttractionOverview} />
       <Stack.Screen name="CreatePost" component={CreatePost} />
     </Stack.Navigator>
   );

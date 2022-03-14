@@ -3,46 +3,74 @@ import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
 import { globalStyles } from "../../styles/global";
 
-export default function ProfileInfo({username, age, setAge, nationality, setNationality, interest, setInterest, isEditing}) {
-  
+export default function ProfileInfo({
+  username,
+  age,
+  setAge,
+  nationality,
+  setNationality,
+  interest,
+  setInterest,
+  isEditing,
+  isGuide,
+  rate,
+  setRate,
+}) {
   return (
-    <View style={{width: "100%", alignItems: "center"}}>
+    <View style={{ width: "100%", alignItems: "center" }}>
       <Image source={require("../../uss.jpeg")} style={styles.userProfileImg} />
       <Text style={styles.usernameTitle}>{username}</Text>
-      <TextInput
-        label="Age"
-        mode="outlined"
-        value={age}
-        onChangeText={(age) => setAge(age)}
-        style={styles.profileInput}
-        activeOutlineColor="#FFA62B"
-        outlineColor="#A3B3C5"
-        placeholderTextColor="#A3B3C5"
-        keyboardType="numeric"
-        disabled={!isEditing}
-      />
-      <TextInput
-        label="Nationality"
-        mode="outlined"
-        value={nationality}
-        onChangeText={(nationality) => setNationality(nationality)}
-        style={styles.profileInput}
-        activeOutlineColor="#FFA62B"
-        outlineColor="#A3B3C5"
-        placeholderTextColor="#A3B3C5"
-        disabled={!isEditing}
-      />
-      <TextInput
-        label="Interest"
-        mode="outlined"
-        value={interest}
-        onChangeText={(interest) => setInterest(interest)}
-        style={styles.profileInput}
-        activeOutlineColor="#FFA62B"
-        outlineColor="#A3B3C5"
-        placeholderTextColor="#A3B3C5"
-        disabled={!isEditing}
-      />
+      {isGuide ? (
+        <TextInput
+          label="Rate"
+          mode="outlined"
+          value={rate}
+          onChangeText={(rate) => setRate(rate)}
+          style={styles.profileInput}
+          activeOutlineColor="#FFA62B"
+          outlineColor="#A3B3C5"
+          placeholderTextColor="#A3B3C5"
+          keyboardType="numeric"
+          disabled={!isEditing}
+        />
+      ) : (
+        <View>
+          <TextInput
+            label="Age"
+            mode="outlined"
+            value={age}
+            onChangeText={(age) => setAge(age)}
+            style={styles.profileInput}
+            activeOutlineColor="#FFA62B"
+            outlineColor="#A3B3C5"
+            placeholderTextColor="#A3B3C5"
+            keyboardType="numeric"
+            disabled={!isEditing}
+          />
+          <TextInput
+            label="Nationality"
+            mode="outlined"
+            value={nationality}
+            onChangeText={(nationality) => setNationality(nationality)}
+            style={styles.profileInput}
+            activeOutlineColor="#FFA62B"
+            outlineColor="#A3B3C5"
+            placeholderTextColor="#A3B3C5"
+            disabled={!isEditing}
+          />
+          <TextInput
+            label="Interest"
+            mode="outlined"
+            value={interest}
+            onChangeText={(interest) => setInterest(interest)}
+            style={styles.profileInput}
+            activeOutlineColor="#FFA62B"
+            outlineColor="#A3B3C5"
+            placeholderTextColor="#A3B3C5"
+            disabled={!isEditing}
+          />
+        </View>
+      )}
     </View>
   );
 }

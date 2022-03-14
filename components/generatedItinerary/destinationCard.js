@@ -9,7 +9,7 @@ import {
 } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/global.js";
 
-export default function DestinationCard() {
+export default function DestinationCard({handleNavigateBooking}) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
   const [bookingStatus, setBookingStatus] = useState(1);
 
@@ -61,7 +61,7 @@ export default function DestinationCard() {
           {bookingStatus == 0 ? (
             <TouchableOpacity
               style={[globalStyles.btnContainerSq, styles.bookBtn]}
-              // onPress={handlePress}
+              onPress={() => handleNavigateBooking("Night Safari")}
             >
               <Text style={[globalStyles.btnText, styles.bookText]}>
                 Book Tour Guide
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   descriptionCardContainer: {
     flexDirection: "row",
     paddingHorizontal: 5,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     marginBottom: 12,
   },
   destinationCardWrapper: {

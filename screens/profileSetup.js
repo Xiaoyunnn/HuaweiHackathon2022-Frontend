@@ -4,6 +4,8 @@ import { globalStyles } from "../styles/global";
 import ProfileInfo from "../components/profile/profileInfo";
 
 export default function ProfileSetup({route, navigation}) {
+  const isGuide = true;
+  const [rate, setRate] = useState("");
   const [age, setAge] = useState("");
   const [nationality, setNationality] = useState("");
   const [interest, setInterest] = useState("");
@@ -25,6 +27,9 @@ export default function ProfileSetup({route, navigation}) {
         interest={interest}
         setInterest={setInterest}
         isEditing={true}
+        isGuide={isGuide}
+        rate={rate}
+        setRate={setRate}
       />
 
       <TouchableOpacity

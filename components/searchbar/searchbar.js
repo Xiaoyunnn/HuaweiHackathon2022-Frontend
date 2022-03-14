@@ -17,13 +17,15 @@ export default function Searchbar({
   setInput,
   selectSearchAttraction,
   setSelectSearchAttraction,
+  type,
+  handleSelectGuide,
 }) {
   const sampleData = [
-    {attractionName: "sentosa"},
-    {attractionName: "merlion park"},
-    {attractionName: "marina bay sands"},
-    {attractionName: "universal studios"},
-    {attractionName: "tiong bahru"},
+    { attractionName: "sentosa" },
+    { attractionName: "merlion park" },
+    { attractionName: "marina bay sands" },
+    { attractionName: "universal studios" },
+    { attractionName: "tiong bahru" },
   ];
   const [filteredData, setFilteredData] = useState([]);
 
@@ -40,26 +42,34 @@ export default function Searchbar({
     }
   };
 
-  const handleSelect = (key) => (event) => {
+  // const handleSelectGuide = (key) => event => {
+  //   console.log("select " + key);
+  //   console.log(event);
+
+  // }
+
+  const handleSelectAttraction = (key) => (event) => {
     if (!selectSearchAttraction.includes(key)) {
       const arr = [...selectSearchAttraction, key];
       setSelectSearchAttraction(arr);
     }
   };
 
-  const handleRemove = (key) => (event) => {
-    const arr = selectSearchAttraction.filter((item) => item.attractionName !== key);
+  const handleRemoveAttraction = (key) => (event) => {
+    const arr = selectSearchAttraction.filter(
+      (item) => item.attractionName !== key
+    );
     setSelectSearchAttraction(arr);
   };
 
   const renderSelectedSearchItems = () => {
-    if (selectSearchAttraction.length > 0) {
+    if (type === "attractions" && selectSearchAttraction?.length > 0) {
       return (
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           {selectSearchAttraction.map((item, i) => (
             <SelectedItem
               key={item.attractionName}
-              handleRemove={handleRemove(item.attractionName)}
+              handleRemove={handleRemoveAttraction(item.attractionName)}
               item={item}
             />
           ))}
@@ -77,7 +87,11 @@ export default function Searchbar({
         <TextInput
           style={globalStyles.input}
           placeholderTextColor="#a17556"
-          placeholder="Search for an attraction"
+          placeholder={
+            type === "guide"
+              ? "Search for a tour guide"
+              : "Search for an attraction"
+          }
           value={input}
           onChangeText={handleFilter}
           returnKeyType="search"
@@ -104,7 +118,11 @@ export default function Searchbar({
           {filteredData.map((item, i) => (
             <SearchAttractionItem
               key={item.attractionName}
-              handleSelect={handleSelect(item)}
+              handleSelect={
+                type === "guide"
+                  ? () => handleSelectGuide(item)
+                  : handleSelectAttraction(item)
+              }
               item={item.attractionName}
             />
           ))}

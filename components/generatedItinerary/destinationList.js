@@ -4,7 +4,10 @@ import DayTabBar from "./dayTabBar";
 import { globalStyles } from "../../styles/global";
 import DestinationCard from "./destinationCard";
 
-export default function DestinationList({ destinations }) {
+export default function DestinationList({
+  destinations,
+  handleNavigateBooking,
+}) {
   const numDays = 3;
   const [daySelected, setDaySelected] = useState(0);
 
@@ -20,7 +23,10 @@ export default function DestinationList({ destinations }) {
         return (
           <View>
             {destinations.map((destination, i) => (
-              <DestinationCard />
+              <DestinationCard
+                key={i}
+                handleNavigateBooking={handleNavigateBooking}
+              />
             ))}
           </View>
         );

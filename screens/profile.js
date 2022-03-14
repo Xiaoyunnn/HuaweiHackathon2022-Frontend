@@ -4,6 +4,8 @@ import { globalStyles } from "../styles/global";
 import ProfileInfo from "../components/profile/profileInfo";
 
 export default function Profile({navigation}) {
+  const isGuide = true;
+  const [rate, setRate] = useState("");
   const [age, setAge] = useState("");
   const [nationality, setNationality] = useState("");
   const [interest, setInterest] = useState("");
@@ -29,6 +31,9 @@ export default function Profile({navigation}) {
         interest={interest}
         setInterest={setInterest}
         isEditing={isEditing}
+        isGuide={isGuide}
+        rate={rate}
+        setRate={setRate}
       />
 
       {isEditing ? (
