@@ -14,33 +14,37 @@ import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
 
-export default function Signup({ navigation }) {
+import { connect } from "react-redux";
+import { loginUser, signupUser } from "../redux/actions/user";
+
+function Signup({ navigation, signupUser, loginUser, user }) {
   const [username, setUsername] = useState("");
-  const [signupEmail, setSignupEmail] = useState("");
+  const [nationality, setNationality] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupCfmPassword, setSignupCfmPassword] = useState("");
   const [checked, setChecked] = useState(false);
   // const navigation = useNavigation();
 
   const submitSignup = () => {
-    // console.warn("sign up");
-    // navigation.navigate("Home", { screen: "My Trips" });
-    navigation.navigate("Setup", {username: username});
-    // let isValidEmail = validator.isEmail(signupEmail);
-    // if (!isValidEmail) {
-    //   Alert.alert("Invalid Email", "Please enter a valid email.");
-    // } else if (signupPassword != signupCfmPassword) {
-    //   Alert.alert(
-    //     "Password Mismatch",
-    //     "Please ensure that both passwords are the same"
-    //   );
-    // } else {
-    //   Alert.alert(
-    //     "Valid",
-    //     `Username: ${username}\nEmail: ${signupEmail}\nPassword: ${signupPassword}`
-    //   );
-    //   navigation.navigate("Todo");
-    // }
+    if (signupPassword != signupCfmPassword) {
+      Alert.alert(
+        "Password Mismatch",
+        "Please ensure that both passwords are the same"
+      );
+    } else {
+      const body = {
+        name: username,
+        password: signupPassword,
+        nationality: nationality
+      }
+      signupUser(body);
+      if (user.error) {
+        Alert.alert("Invalid", user.error)
+      } else {
+        loginUser({ name: body.name, password: body.password });
+        navigation.navigate("Home");
+      }
+    }
   };
 
   return (
@@ -71,16 +75,22 @@ export default function Signup({ navigation }) {
 
         <View style={globalStyles.inputWrapper}>
           <View style={globalStyles.iconWrapper}>
-            <MaterialIcons name="email" size={20} color="#d4af95" />
+            <FontAwesome5
+              name="user-alt"
+              size={18}
+              color="#d4af95"
+              style={{
+                marginLeft: 2,
+              }}
+            />
           </View>
           <TextInput
-            keyboardType="email-address"
             autoCapitalize="none"
             style={globalStyles.input}
             placeholderTextColor="#a17556"
-            placeholder="Email Address"
-            value={signupEmail}
-            onChangeText={(value) => setSignupEmail(value)}
+            placeholder="Nationality"
+            value={nationality}
+            onChangeText={(value) => setNationality(value)}
           />
         </View>
 
@@ -153,6 +163,14 @@ export default function Signup({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, { signupUser, loginUser })(Signup);
 
 // const styles = Stylesheet.create({
 //   signupLoginContainer: {

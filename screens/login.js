@@ -13,39 +13,41 @@ import validator from "validator";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Login({ navigation }) {
-  const [loginEmail, setLoginEmail] = useState("");
+import { connect } from "react-redux";
+import { loginUser } from "../redux/actions/user";
+
+function Login({ navigation, loginUser, user }) {
+  const [loginName, setLoginName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   // const navigation = useNavigation();
 
   const submitLogin = () => {
-    navigation.navigate("Home");
-    // let isValidEmail = validator.isEmail(loginEmail);
-    // if (!isValidEmail) {
-    //   Alert.alert("Invalid Email", "Please enter a valid email.");
-    // } else {
-    //   Alert.alert("Valid", `Email: ${loginEmail}\nPassword: ${loginPassword}`);
-    //   navigation.navigate("Todo");
-    // }
+      const body = { name: loginName, password: loginPassword};
+      loginUser(body);
+      if (user.userId && user.token && !user.error) {
+        navigation.navigate("Home");
+      } else {
+        Alert.alert("Invalid Credentials", "Please try again");
+      }
   };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={globalStyles.signupLoginContainer}>
-        <Text style={globalStyles.titleText}>Login to Punkt.</Text>
+        <Text style={globalStyles.titleText}>Login to Reisen.</Text>
         <View style={globalStyles.inputWrapper}>
           <View style={globalStyles.iconWrapper}>
             <MaterialIcons name="email" size={20} color="#d4af95" />
           </View>
           <TextInput
-            keyboardType="email-address"
+            //keyboardType="email-address"
             autoCapitalize="none"
-            autoComplete="email"
+            autoComplete="username"
             style={globalStyles.input}
             placeholderTextColor="#a17556"
-            placeholder="Email Address"
-            value={loginEmail}
-            onChangeText={(value) => setLoginEmail(value)}
+            placeholder="Username"
+            value={loginName}
+            onChangeText={(value) => setLoginName(value)}
           />
         </View>
 
@@ -86,6 +88,16 @@ export default function Login({ navigation }) {
     </TouchableWithoutFeedback>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps, {
+  loginUser
+})(Login);
 
 // const styles = stylesheet.create({
 //   signupLoginContainer: {

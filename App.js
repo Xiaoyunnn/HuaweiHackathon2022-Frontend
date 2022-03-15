@@ -4,16 +4,21 @@ import { NavigationContainer } from "@react-navigation/native";
 import AuthStack from "./routes/authStack";
 import HomeStack from './routes/homeStack';
 
+import { Provider } from "react-redux";
+import store from './redux/store';
+
 export default function App() {
   return (
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <StatusBar style="auto" />
     // </View>
-    <NavigationContainer>
-      <AuthStack />
-      {/* <HomeStack/> */}
-    </NavigationContainer>
+    <Provider store={store} >
+      <NavigationContainer>
+        <AuthStack />
+        {/* <HomeStack/> */}
+      </NavigationContainer>
+    </Provider>
   );
 }
 
