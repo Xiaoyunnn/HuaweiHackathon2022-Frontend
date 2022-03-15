@@ -30,6 +30,12 @@ export default function GeneratedItinerary({ route, navigation }) {
     });
   };
 
+  const handleNavigateAttraction = (attraction) => {
+    navigation.navigate("Attraction Overview", {
+      attraction: attraction
+    })
+  }
+
   const handleConfirm = () => {
     console.log("confirm itinerary");
   };
@@ -50,6 +56,7 @@ export default function GeneratedItinerary({ route, navigation }) {
           destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
+          handleNavigateAttraction={handleNavigateAttraction}
           isEditing={isEditing}
         />
       ) : active == 2 ? (
@@ -57,6 +64,7 @@ export default function GeneratedItinerary({ route, navigation }) {
           destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
+          handleNavigateAttraction={handleNavigateAttraction}
           isEditing={isEditing}
         />
       ) : (
@@ -64,6 +72,7 @@ export default function GeneratedItinerary({ route, navigation }) {
           destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
+          handleNavigateAttraction={handleNavigateAttraction}
           isEditing={isEditing}
         />
       )}

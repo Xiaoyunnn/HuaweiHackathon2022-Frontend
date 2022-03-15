@@ -10,7 +10,12 @@ import {
 } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/global.js";
 
-export default function DestinationCard({ handleNavigateBooking, isEditing, handleRemove }) {
+export default function DestinationCard({
+  handleNavigateBooking,
+  handleNavigateAttraction,
+  isEditing,
+  handleRemove,
+}) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
   const [bookingStatus, setBookingStatus] = useState(0);
 
@@ -45,7 +50,7 @@ export default function DestinationCard({ handleNavigateBooking, isEditing, hand
           style={styles.destinationImg}
         />
         <View style={styles.descriptionWrapper}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleNavigateAttraction("Night Safari")}>
             <Text style={styles.cardTitle}>Night Safari</Text>
             <View style={styles.iconsWrapper}>
               <AntDesign name="star" size={16} color="#FECF72" />

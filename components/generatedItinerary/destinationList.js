@@ -8,6 +8,7 @@ export default function DestinationList({
   destinations,
   setSelectedDestinations,
   handleNavigateBooking,
+  handleNavigateAttraction,
   isEditing
 }) {
   const numDays = 3;
@@ -17,13 +18,6 @@ export default function DestinationList({
     setDaySelected(day);
     console.log(daySelected);
   };
-
-  // const handleSelectDestination = (key) => () => {
-  //   if (!selectSearchAttraction.includes(key)) {
-  //     const arr = [...selectSearchAttraction, key];
-  //     setSelectSearchAttraction(arr);
-  //   }
-  // };
 
   const handleRemoveDestination = (key) => () => {
     const arr = destinations.filter(
@@ -42,6 +36,7 @@ export default function DestinationList({
               <DestinationCard
                 key={i}
                 handleNavigateBooking={handleNavigateBooking}
+                handleNavigateAttraction={handleNavigateAttraction}
                 isEditing={isEditing}
                 handleRemove={handleRemoveDestination(destination)}
               />
