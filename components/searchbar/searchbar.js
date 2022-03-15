@@ -120,7 +120,7 @@ export default function Searchbar({
               key={item.attractionName}
               handleSelect={
                 type === "guide"
-                  ? () => handleSelectGuide(item)
+                  ? () => handleSelectGuide(item.attractionName)
                   : handleSelectAttraction(item)
               }
               item={item.attractionName}

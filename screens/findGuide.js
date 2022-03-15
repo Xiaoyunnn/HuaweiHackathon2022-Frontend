@@ -7,7 +7,7 @@ import GuideItem from "../components/guide/guideItem";
 export default function FindGuide({ navigation }) {
   const [searchInput, setSearchInput] = useState("");
   const [order, setOrder] = useState("rating");
-  const sample = [
+  const [sample, setSample] = useState([
     { name: "alice", rating: 4.5, hourlyRates: 20 },
     { name: "betty", rating: 4.2, hourlyRates: 10 },
     { name: "carol", rating: 4.1, hourlyRates: 30 },
@@ -20,9 +20,11 @@ export default function FindGuide({ navigation }) {
     { name: "john", rating: 4.5, hourlyRates: 90 },
     { name: "klare", rating: 4.5, hourlyRates: 35 },
     { name: "luna", rating: 4.5, hourlyRates: 37 },
-  ];
+  ].sort((a, b) => b.rating - a.rating));
 
-  const renderGuide = ({item}) => <GuideItem guide={item} handleSelectGuide={handlePress}/>;
+  const renderGuide = ({ item }) => (
+    <GuideItem guide={item} handleSelectGuide={handlePress} />
+  );
 
   const handlePress = (guide) => {
     navigation.navigate("Guide Overview", {
@@ -31,8 +33,14 @@ export default function FindGuide({ navigation }) {
   };
 
   const handleSortRating = () => {
-    
-  }
+    setOrder("rating");
+    setSample([...sample].sort((a, b) => b.rating - a.rating));
+  };
+
+  const handleSortHourlyRates = () => {
+    setOrder("hourly-rates");
+    setSample([...sample].sort((a, b) => a.hourlyRates - b.hourlyRates));
+  };
 
   return (
     <View style={[globalStyles.tripsContainer, { paddingHorizontal: 0 }]}>
@@ -47,13 +55,13 @@ export default function FindGuide({ navigation }) {
       <View style={styles.orderWrapper}>
         <Text
           style={order === "rating" ? styles.active : styles.orderText}
-          onPress={() => setOrder("rating")}
+          onPress={handleSortRating}
         >
           ↓ Rating
         </Text>
         <Text
           style={order === "hourly-rates" ? styles.active : styles.orderText}
-          onPress={() => setOrder("hourly-rates")}
+          onPress={handleSortHourlyRates}
         >
           ↑ Hourly Rates
         </Text>
