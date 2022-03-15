@@ -3,12 +3,12 @@ import {
     UPDATE_USER,
     SIGNUP_USER,
     LOGIN_ERROR,
-    GET_USER
+    GET_USER,
+    LOGOUT_USER
 } from "../actions/types";
 
 const initialState = {
     isAuthenticated: false,
-    isTourGuide: false,
     userId: null,
     name: null,
     nationality: null,
@@ -52,6 +52,18 @@ const user = (state = initialState, action) => {
                 currentItinerary: null,
                 token: null,
                 error: payload
+            }
+        case LOGOUT_USER:
+            return {
+                isAuthenticated: false,
+                userId: null,
+                name: null,
+                nationality: null,
+                age: null,
+                interest: null,
+                currentItinerary: null,
+                token: null,
+                error: null
             }
         case SIGNUP_USER:
         default:

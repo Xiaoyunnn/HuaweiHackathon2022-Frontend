@@ -129,7 +129,7 @@ function Signup({ navigation, signupUser, loginUser, user }) {
           lower case and 1 numeric digit.
         </Text>
 
-        <View style={globalStyles.guideCheckbox}>
+        {/* <View style={globalStyles.guideCheckbox}>
           <Checkbox
             status={checked ? "checked" : "unchecked"}
             onPress={() => {
@@ -138,7 +138,7 @@ function Signup({ navigation, signupUser, loginUser, user }) {
             color="#FFA62B"
           />
           <Text style={globalStyles.input}>Sign up as a tour guide.</Text>
-        </View>
+        </View> */}
 
         <TouchableOpacity
           style={globalStyles.btnContainer}

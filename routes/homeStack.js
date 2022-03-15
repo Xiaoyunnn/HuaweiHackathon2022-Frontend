@@ -50,8 +50,8 @@ export default function HomeStack() {
           headerRight: () => (
             <HeaderRightAdd
               isGuide={isGuide}
-              handlePressItinerary={() =>
-                navigation.navigate("Create Itinerary")
+              handlePressItinerary={() =>{
+                navigation.navigate("Create Itinerary")}
               }
               handlePressPost={() => navigation.navigate("CreatePost")}
             />

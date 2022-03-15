@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { globalStyles } from "../../styles/global";
 
-export default function ItineraryCardSmall() {
+export default function ItineraryCardSmall({ attraction }) {
   return (
     <TouchableWithoutFeedback onPress={() => console.log("pressed")}>
       <View style={styles.ItineraryCardSmallContainer}>
@@ -19,7 +19,7 @@ export default function ItineraryCardSmall() {
           style={globalStyles.itineraryImageSmall}
         />
         <Text style={styles.newAdventureTitle}>
-          Universal Studios Singapore
+          {attraction.attractionName}
         </Text>
       </View>
     </TouchableWithoutFeedback>

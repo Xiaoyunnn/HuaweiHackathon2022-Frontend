@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
 import React, { useLayoutEffect } from "react";
 import { globalStyles } from "../styles/global";
 
-export default function AttractionOverview({ route, navigation }) {
+export default function AttractionOverview({ route, navigation, attraction }) {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: route.params.attraction,

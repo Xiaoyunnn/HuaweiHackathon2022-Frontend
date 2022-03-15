@@ -7,11 +7,11 @@ import {
 } from "react-native";
 import React from "react";
 
-export default function ItineraryCard() {
+export default function ItineraryCard({ itinerary }) {
   return (
     <View style={styles.itineraryContainer}>
       <View style={styles.itineraryTitleContainer}>
-        <Text style={styles.itineraryTitle}>Family Trip June</Text>
+        <Text style={styles.itineraryTitle}>{itinerary.itineraryStatus}</Text>
         <TouchableWithoutFeedback onPress={() => console.log("family trip")}>
           <Text style={styles.itineraryView}>View</Text>
         </TouchableWithoutFeedback>

@@ -13,8 +13,19 @@ import BottomBtn from "../components/bottomBtn";
 import Searchbar from "../components/searchbar/searchbar";
 import AttractionCard from "../components/itinerary/attractionCard";
 
-export default function PopularAttractions({ navigation }) {
+import { connect } from 'react-redux';
+import { getAllAttractions } from "../redux/actions/attractions";
+
+function PopularAttractions({ navigation, getAllAttractions, attractions }) {
   const [attraction, setAttraction] = useState("");
+
+  useEffect(() => {
+    getAllAttractions();
+  }, [getAllAttractions])
+
+  const recommendedAttraction = length => {
+    return Math.floor(Math.random() * length);
+  }
 
   const sampleData = [
     { attractionName: "Night Safari" },
@@ -22,11 +33,7 @@ export default function PopularAttractions({ navigation }) {
     { attractionName: "National Gallery" },
   ];
   // initialize to an array of false, size = num of attractions shown
-  const [attractionSelected, setAttractionSelected] = useState([
-    false,
-    false,
-    false,
-  ]);
+  const [attractionSelected, setAttractionSelected] = useState((new Array(attractions.length)).fill(false));
 
   const [selectSearchAttraction, setSelectSearchAttraction] = useState([]);
 
@@ -38,9 +45,9 @@ export default function PopularAttractions({ navigation }) {
 
   const navigateNext = () => {
     let attractionsArr = [];
-    for (let i = 0; i < sampleData.length; i++) {
+    for (let i = 0; i < attractions.length; i++) {
       if (attractionSelected[i]) {
-        attractionsArr.push(sampleData[i]);
+        attractionsArr.push(attractions[i]);
       }
     }
 
@@ -71,7 +78,7 @@ export default function PopularAttractions({ navigation }) {
           { paddingBottom: 15 },
         ]}
       >
-        {sampleData.map((data, i) => (
+        {attractions.map((data, i) => (
           <AttractionCard
             handleSelect={handleSelect}
             index={i}
@@ -85,6 +92,14 @@ export default function PopularAttractions({ navigation }) {
     </View>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    attractions: state.attractions.all
+  }
+};
+
+export default connect(mapStateToProps, { getAllAttractions })(PopularAttractions);
 
 const styles = StyleSheet.create({
   cancelIcon: {

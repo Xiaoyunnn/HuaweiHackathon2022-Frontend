@@ -5,7 +5,8 @@ import {
     LOGIN_ERROR,
     USER_ERROR,
     SIGNUP_ERROR,
-    GET_USER
+    GET_USER,
+    LOGOUT_USER
 } from "./types";
 import axios from "axios";
 import { url } from "../../utils/constants";
@@ -79,4 +80,10 @@ export const getUser = id => async dispatch => {
             payload: err.message
         })
     }
+}
+
+export const logoutUser = () => dispatch => {
+    dispatch({
+        type: LOGOUT_USER
+    })
 }

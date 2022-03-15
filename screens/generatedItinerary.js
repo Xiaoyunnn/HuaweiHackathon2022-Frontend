@@ -1,10 +1,13 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { globalStyles } from "../styles/global";
 import RoutesHeaderBar from "../components/generatedItinerary/routesHeaderBar";
 import DestinationList from "../components/generatedItinerary/destinationList";
 
-export default function GeneratedItinerary({ route, navigation }) {
+import { connect } from "react-redux";
+import { getGeneratedAttractions } from "../redux/actions/attractions";
+
+function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itineraries, attractions }) {
   const sampleDestination = [
     "Trick Eye Museum",
     "Universal Studios",
@@ -19,6 +22,10 @@ export default function GeneratedItinerary({ route, navigation }) {
   const [active, setActive] = useState(1);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDestinations, setSelectedDestinations] = useState(sampleDestination);
+
+  useEffect(() => {
+    getGeneratedAttractions(itineraries.days[0].attractions);
+  }, [getGeneratedAttractions])
 
   const handleActive = (index) => {
     setActive(index);
@@ -93,3 +100,11 @@ export default function GeneratedItinerary({ route, navigation }) {
     </View>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    attractions: state.attractions.generated
+  }
+};
+
+export default connect(mapStateToProps, { getGeneratedAttractions })(GeneratedItinerary);

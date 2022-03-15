@@ -7,7 +7,10 @@ import { Entypo } from "@expo/vector-icons";
 import BottomBtn from "../components/bottomBtn";
 import ExpectationInput from "../components/itinerary/expectationInput";
 
-export default function Preferences({ route, navigation }) {
+import { connect } from "react-redux";
+import { generateItinerary } from "../redux/actions/itinerary";
+
+function Preferences({ route, navigation, nationality, age, generateItinerary, generated }) {
   // console.log(route.params.attractionsArr);
   const ONE_DAY_IN_MS = 24 * 3600 * 1000;
   const minDate = new Date(); // Today
@@ -64,8 +67,25 @@ export default function Preferences({ route, navigation }) {
       (new Date(endDate).getTime() - new Date(startDate).getTime()) /
         ONE_DAY_IN_MS +
       1;
+
+    const selectedExpectations = [];
+    for (let i = 0; i < travelExpectations.length; i++) {
+      if (travelExpectations[i].isSelected) {
+        selectedExpectations.push(travelExpectations[i].title.toUpperCase());
+      }
+    }
+    
+    const body = {
+      nationality: nationality ? nationality : "singaporean",
+      age: age ? age : 30,
+      days: numDays,
+      numPeople: numPeople,
+      expectations: selectedExpectations
+    }
+
+    generateItinerary(body);
     navigation.navigate("Generated Itinerary", {
-      itineraries: [],
+      itineraries: generated,
       tripTitle: title,
       numDays: numDays,
     });
@@ -141,6 +161,16 @@ export default function Preferences({ route, navigation }) {
     </View>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    nationality: state.user.nationality,
+    age: state.user.age,
+    generated: state.itinerary.generated
+  }
+}
+
+export default connect(mapStateToProps, { generateItinerary })(Preferences);
 
 const styles = StyleSheet.create({
   preferenceInputContainer: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -14,21 +14,25 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import { connect } from "react-redux";
-import { loginUser } from "../redux/actions/user";
+import { getUser, loginUser } from "../redux/actions/user";
 
-function Login({ navigation, loginUser, user }) {
+function Login({ navigation, loginUser, getUser, user }) {
   const [loginName, setLoginName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   // const navigation = useNavigation();
 
+  useEffect(() => {
+    if (user.token && !user.error) {
+      getUser(user.userId);
+      navigation.navigate("Home");
+    } else {
+      Alert.alert("Invalid Credentials", user.error);
+    }
+  }, [getUser, user.userId, user.token, user.error])
+
   const submitLogin = () => {
       const body = { name: loginName, password: loginPassword};
       loginUser(body);
-      if (user.userId && user.token && !user.error) {
-        navigation.navigate("Home");
-      } else {
-        Alert.alert("Invalid Credentials", "Please try again");
-      }
   };
 
   return (
@@ -96,7 +100,8 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  loginUser
+  loginUser,
+  getUser
 })(Login);
 
 // const styles = stylesheet.create({
