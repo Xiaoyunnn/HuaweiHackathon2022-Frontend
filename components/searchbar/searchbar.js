@@ -48,14 +48,14 @@ export default function Searchbar({
 
   // }
 
-  const handleSelectAttraction = (key) => (event) => {
+  const handleSelectAttraction = (key) => () => {
     if (!selectSearchAttraction.includes(key)) {
       const arr = [...selectSearchAttraction, key];
       setSelectSearchAttraction(arr);
     }
   };
 
-  const handleRemoveAttraction = (key) => (event) => {
+  const handleRemoveAttraction = (key) => () => {
     const arr = selectSearchAttraction.filter(
       (item) => item.attractionName !== key
     );

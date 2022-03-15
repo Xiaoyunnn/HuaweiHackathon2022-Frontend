@@ -7,6 +7,7 @@ import DestinationList from "../components/generatedItinerary/destinationList";
 export default function GeneratedItinerary({ route, navigation }) {
   const [active, setActive] = useState(1);
   const sampleDestination = ["Trick Eye Museum", "Universal Studios", "Night Safari"];
+  const sampleDestination2 = ["Trick Eye Museum", "Universal Studios", "Night Safari", "RWS"];
 
   const handleActive = (index) => {
     setActive(index);
@@ -32,7 +33,7 @@ export default function GeneratedItinerary({ route, navigation }) {
       {active == 1 ? (
         <DestinationList destinations={sampleDestination} handleNavigateBooking={handleNavigateBooking}/>
       ) : active == 2 ? (
-        <DestinationList destinations={sampleDestination} handleNavigateBooking={handleNavigateBooking}/>
+        <DestinationList destinations={sampleDestination2} handleNavigateBooking={handleNavigateBooking}/>
       ) : (
         <DestinationList destinations={sampleDestination} handleNavigateBooking={handleNavigateBooking}/>
       )}

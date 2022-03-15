@@ -38,19 +38,19 @@ export default function DestinationCard({handleNavigateBooking}) {
             <Text style={styles.cardTitle}>Night Safari</Text>
             <View style={styles.iconsWrapper}>
               <AntDesign name="star" size={16} color="#FECF72" />
-              <Text style={styles.ratingText}>4.5</Text>
+              <Text style={globalStyles.ratingText}>4.5</Text>
               <MaterialCommunityIcons
                 name="clock-time-two"
                 size={16}
                 color="#A3B3C5"
               />
-              <Text style={styles.durationText}>2h</Text>
+              <Text style={globalStyles.durationText}>2h</Text>
               <MaterialCommunityIcons
                 name="cash-usd-outline"
                 size={20}
                 color="#52AA6B"
               />
-              <Text style={styles.costText}>$30</Text>
+              <Text style={globalStyles.costText}>$30</Text>
             </View>
             <Text style={styles.cardDescription} numberOfLines={3}>
               Experience a mind-boggling world of 3D adventure at the Trick Eye
@@ -145,27 +145,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 5,
   },
-  ratingText: {
-    color: "#FFBD59",
-    fontWeight: "bold",
-    marginLeft: 3,
-    marginRight: 6,
-    fontSize: 14,
-  },
-  durationText: {
-    color: "#A3B3C5",
-    fontWeight: "bold",
-    marginLeft: 3,
-    marginRight: 6,
-    fontSize: 14,
-  },
-  costText: {
-    color: "#52AA6B",
-    fontWeight: "bold",
-    marginLeft: 3,
-    marginRight: 6,
-    fontSize: 14,
-  },
+  
   cardDescription: {
     color: "#647A91",
   },
