@@ -5,9 +5,9 @@ import { globalStyles } from "../../styles/global";
 
 export default function GuideItem({guide, handleSelectGuide}) {
   return (
-    <TouchableOpacity style={styles.guideItemContainer} onPress={() => handleSelectGuide(guide.name)}>
+    <TouchableOpacity style={styles.guideItemContainer} onPress={() => handleSelectGuide(guide)}>
       <Image source={require("../../gbb.jpeg")} style={styles.guideImg} />
-      <View style={{ height: 80 }}>
+      <View style={{ height: 80, width: "75%" }}>
         <Text style={styles.guideName}>{guide.name}</Text>
         <View style={styles.rateItemsWrapper}>
           <AntDesign name="star" size={16} color="#FECF72" />
@@ -19,7 +19,7 @@ export default function GuideItem({guide, handleSelectGuide}) {
           />
           <Text style={globalStyles.costText}>${guide.hourlyRates}/h</Text>
         </View>
-        <Text style={styles.guideDescriptionText} numberOfLines={2}>
+        <Text style={globalStyles.greyText} numberOfLines={2}>
           “Lorem ipsum dolor sit amet, assssss consectetur adipiscing elit,...”
         </Text>
       </View>
@@ -53,9 +53,5 @@ const styles = StyleSheet.create({
   guideName: {
     fontWeight: "bold",
     fontSize: 16,
-  },
-  guideDescriptionText: {
-    color: "#647A91",
-    width: "70%",
   },
 });

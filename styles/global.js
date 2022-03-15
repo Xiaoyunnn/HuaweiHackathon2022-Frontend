@@ -202,5 +202,11 @@ export const globalStyles = StyleSheet.create({
     marginRight: 6,
     fontSize: 14,
   },
+  greyHeader: {
+    color: "#647A91",
+    fontWeight: "bold",
+    fontSize: 16,
+    paddingVertical: 7,
+  }
   
 });
