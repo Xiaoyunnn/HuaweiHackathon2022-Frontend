@@ -10,9 +10,9 @@ import {
 import React from "react";
 import { globalStyles } from "../../styles/global";
 
-export default function ItineraryCardSmall({ attraction }) {
+export default function ItineraryCardSmall({handlePress, attraction}) {
   return (
-    <TouchableWithoutFeedback onPress={() => console.log("pressed")}>
+    <TouchableWithoutFeedback onPress={handlePress("Universal Studios Singapore")}>
       <View style={styles.ItineraryCardSmallContainer}>
         <Image
           source={require("../../ussv2.jpeg")}

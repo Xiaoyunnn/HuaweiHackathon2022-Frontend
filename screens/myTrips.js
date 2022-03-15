@@ -29,13 +29,25 @@ function MyTrips({
   }, [getAllAttractions])
 
   var attractionList = attractions.map(att => {
-    return <ItineraryCardSmall attraction={att} />
+    return <ItineraryCardSmall attraction={att} handlePress={handlePressAttraction}/>
   });
 
   const condRender = () => {
     if (itinerary) {
-      return <ItineraryCard />
+      return <ItineraryCard handleView={handleView}/>
     }
+  }
+  
+  const handleView = (title) => () => {
+    navigation.navigate("View Itinerary", {
+      title: title
+    })
+  }
+
+  const handlePressAttraction = (name) => () => {
+    navigation.navigate("Attraction Overview", {
+      attraction: name
+    })
   }
   
   return (

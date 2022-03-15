@@ -45,6 +45,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itiner
 
   const handleConfirm = () => {
     console.log("confirm itinerary");
+    navigation.navigate("My Trips")
   };
 
   // console.log(route.params)

@@ -7,14 +7,13 @@ import {
 } from "react-native";
 import React from "react";
 
-export default function ItineraryCard({ itinerary }) {
+export default function ItineraryCard({handleView, itinerary}) {
+  
   return (
     <View style={styles.itineraryContainer}>
       <View style={styles.itineraryTitleContainer}>
         <Text style={styles.itineraryTitle}>{itinerary.itineraryStatus}</Text>
-        <TouchableWithoutFeedback onPress={() => console.log("family trip")}>
-          <Text style={styles.itineraryView}>View</Text>
-        </TouchableWithoutFeedback>
+        <Text style={styles.itineraryView} onPress={handleView("Family Trip June")}>View</Text>
       </View>
       <Image source={require("../../gbb.jpeg")} style={styles.itineraryImage} />
     </View>
