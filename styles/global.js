@@ -180,6 +180,38 @@ export const globalStyles = StyleSheet.create({
   },
   greyText: {
     color: "#647A91" 
-  }
+  },
+  ratingText: {
+    color: "#FFBD59",
+    fontWeight: "bold",
+    marginLeft: 3,
+    marginRight: 6,
+    fontSize: 14,
+  },
+  durationText: {
+    color: "#A3B3C5",
+    fontWeight: "bold",
+    marginLeft: 3,
+    marginRight: 6,
+    fontSize: 14,
+  },
+  costText: {
+    color: "#52AA6B",
+    fontWeight: "bold",
+    marginLeft: 3,
+    marginRight: 6,
+    fontSize: 14,
+  },
+  greyHeader: {
+    color: "#647A91",
+    fontWeight: "bold",
+    fontSize: 16,
+    paddingVertical: 7,
+  },
+  twoBtnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // width: "100%",
+  },
   
 });

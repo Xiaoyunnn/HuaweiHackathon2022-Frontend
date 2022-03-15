@@ -18,7 +18,7 @@ export default function Profile({navigation}) {
 
   const submitLogout = () => {
     console.log("lgout");
-    console.log(navigation)
+    navigation.navigate("Login")
   };
 
   return (
@@ -37,7 +37,7 @@ export default function Profile({navigation}) {
       />
 
       {isEditing ? (
-        <View style={styles.twoBtnContainer}>
+        <View style={[globalStyles.twoBtnContainer, {width: "100%"}]}>
           <TouchableOpacity
             style={globalStyles.btnContainerAltSmall}
             onPress={() => setIsEditing(false)}
@@ -90,9 +90,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginBottom: 10,
   },
-  twoBtnContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-  },
+  
 });

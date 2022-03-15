@@ -5,22 +5,38 @@ import {
   SimpleLineIcons,
   MaterialCommunityIcons,
   AntDesign,
-  FontAwesome5,Entypo
+  FontAwesome5,
+  Entypo,
 } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/global.js";
 
-export default function DestinationCard({handleNavigateBooking}) {
+export default function DestinationCard({
+  handleNavigateBooking,
+  handleNavigateAttraction,
+  isEditing,
+  handleRemove,
+}) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
-  const [bookingStatus, setBookingStatus] = useState(1);
+  const [bookingStatus, setBookingStatus] = useState(0);
 
   return (
     <View style={styles.descriptionCardContainer}>
       <View style={{ alignItems: "center" }}>
-        <MaterialCommunityIcons
-          name="sign-direction"
-          size={24}
-          color="#FECF72"
-        />
+        {isEditing ? (
+          <Entypo
+            name="circle-with-cross"
+            size={24}
+            color="#DE4A4A"
+            onPress={handleRemove}
+          />
+        ) : (
+          <MaterialCommunityIcons
+            name="sign-direction"
+            size={24}
+            color="#FECF72"
+          />
+        )}
+
         <Dash
           dashLength={6}
           dashGap={4}
@@ -34,23 +50,23 @@ export default function DestinationCard({handleNavigateBooking}) {
           style={styles.destinationImg}
         />
         <View style={styles.descriptionWrapper}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleNavigateAttraction("Night Safari")}>
             <Text style={styles.cardTitle}>Night Safari</Text>
             <View style={styles.iconsWrapper}>
               <AntDesign name="star" size={16} color="#FECF72" />
-              <Text style={styles.ratingText}>4.5</Text>
+              <Text style={globalStyles.ratingText}>4.5</Text>
               <MaterialCommunityIcons
                 name="clock-time-two"
                 size={16}
                 color="#A3B3C5"
               />
-              <Text style={styles.durationText}>2h</Text>
+              <Text style={globalStyles.durationText}>2h</Text>
               <MaterialCommunityIcons
                 name="cash-usd-outline"
                 size={20}
                 color="#52AA6B"
               />
-              <Text style={styles.costText}>$30</Text>
+              <Text style={globalStyles.costText}>$30</Text>
             </View>
             <Text style={styles.cardDescription} numberOfLines={3}>
               Experience a mind-boggling world of 3D adventure at the Trick Eye
@@ -75,7 +91,12 @@ export default function DestinationCard({handleNavigateBooking}) {
               <Text style={[globalStyles.btnText, styles.pendingText]}>
                 Pending
               </Text>
-              <Entypo name="cross" size={18} color="#DE4A4A" onPress={()=> setBookingStatus(0)} />
+              <Entypo
+                name="cross"
+                size={18}
+                color="#DE4A4A"
+                onPress={() => setBookingStatus(0)}
+              />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -85,7 +106,12 @@ export default function DestinationCard({handleNavigateBooking}) {
               <Text style={[globalStyles.btnText, styles.guideText]}>
                 Tour Guide (0800 - 1000)
               </Text>
-              <Entypo name="cross" size={18} color="#DE4A4A" onPress={()=> setBookingStatus(0)} />
+              <Entypo
+                name="cross"
+                size={18}
+                color="#DE4A4A"
+                onPress={() => setBookingStatus(0)}
+              />
             </TouchableOpacity>
           )}
         </View>
@@ -145,27 +171,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 5,
   },
-  ratingText: {
-    color: "#FFBD59",
-    fontWeight: "bold",
-    marginLeft: 3,
-    marginRight: 6,
-    fontSize: 14,
-  },
-  durationText: {
-    color: "#A3B3C5",
-    fontWeight: "bold",
-    marginLeft: 3,
-    marginRight: 6,
-    fontSize: 14,
-  },
-  costText: {
-    color: "#52AA6B",
-    fontWeight: "bold",
-    marginLeft: 3,
-    marginRight: 6,
-    fontSize: 14,
-  },
+
   cardDescription: {
     color: "#647A91",
   },
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   bookBtn: {
-    borderRadius: 12
+    borderRadius: 12,
   },
   guideText: {
     fontSize: 9.5,
@@ -186,10 +192,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 12,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   pendingText: {
     fontSize: 14,
     color: "#FF9900",
-  }
+  },
 });
