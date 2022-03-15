@@ -38,6 +38,7 @@ export default function GeneratedItinerary({ route, navigation }) {
 
   const handleConfirm = () => {
     console.log("confirm itinerary");
+    navigation.navigate("My Trips")
   };
 
   // console.log(route.params)

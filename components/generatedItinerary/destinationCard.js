@@ -9,6 +9,7 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/global.js";
+import IconsBar from "./iconsBar.js";
 
 export default function DestinationCard({
   handleNavigateBooking,
@@ -52,7 +53,7 @@ export default function DestinationCard({
         <View style={styles.descriptionWrapper}>
           <TouchableOpacity onPress={() => handleNavigateAttraction("Night Safari")}>
             <Text style={styles.cardTitle}>Night Safari</Text>
-            <View style={styles.iconsWrapper}>
+            {/* <View style={styles.iconsWrapper}>
               <AntDesign name="star" size={16} color="#FECF72" />
               <Text style={globalStyles.ratingText}>4.5</Text>
               <MaterialCommunityIcons
@@ -67,7 +68,8 @@ export default function DestinationCard({
                 color="#52AA6B"
               />
               <Text style={globalStyles.costText}>$30</Text>
-            </View>
+            </View> */}
+            <IconsBar rating={4.5} duration={"2h"} cost={30}/>
             <Text style={styles.cardDescription} numberOfLines={3}>
               Experience a mind-boggling world of 3D adventure at the Trick Eye
               Museum in Singapore!
@@ -166,12 +168,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
-  iconsWrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 5,
-  },
-
+  
   cardDescription: {
     color: "#647A91",
   },

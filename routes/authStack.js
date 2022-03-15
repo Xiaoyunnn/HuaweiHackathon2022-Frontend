@@ -13,6 +13,7 @@ import FindGuide from "../screens/findGuide";
 import GuideOverview from "../screens/guideOverview";
 import AttractionOverview from "../screens/attractionOverview";
 import { HeaderBackButton } from "@react-navigation/elements";
+import ViewItinerary from "../screens/viewItinerary";
 
 const Stack = createNativeStackNavigator();
 
@@ -56,7 +57,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="Generated Itinerary"
         component={GeneratedItinerary}
-        // options={{ headerTitle: () => <RoutesHeaderBar /> }}
       />
       <Stack.Screen name="Find Tour Guide" component={FindGuide} />
       <Stack.Screen
@@ -64,6 +64,7 @@ const AuthStack = () => {
         component={GuideOverview}
       />
       <Stack.Screen name="Attraction Overview" component={AttractionOverview} />
+      <Stack.Screen name="View Itinerary" component={ViewItinerary} />
       <Stack.Screen name="CreatePost" component={CreatePost} />
     </Stack.Navigator>
   );
