@@ -1,17 +1,23 @@
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { globalStyles } from "../../styles/global";
 
 export default function RatingBar({ rating, width, handlePress }) {
+  
   return (
-    <TouchableWithoutFeedback onPress={handlePress}>
-    <View  style={{ flexDirection: "row", alignItems: "center" }} >
-      <Text style={[globalStyles.greyText, {width: 9}]}>{rating}</Text>
-      <View style={styles.greyProgressbar} />
-      <View style={[styles.orangeProgressbar, { width: width }]} />
-
-    </View>
-    </TouchableWithoutFeedback>
+    <TouchableOpacity onPress={handlePress}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text style={[globalStyles.greyText, { width: 9 }]}>{rating}</Text>
+        <View style={styles.greyProgressbar} />
+        <View style={[styles.orangeProgressbar, { width: width }]} />
+      </View>
+    </TouchableOpacity>
   );
 }
 const styles = StyleSheet.create({
@@ -28,6 +34,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginLeft: 7,
     position: "absolute",
-    left: 9
+    left: 9,
   },
 });

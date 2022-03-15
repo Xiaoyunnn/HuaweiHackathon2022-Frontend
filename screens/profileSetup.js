@@ -48,27 +48,3 @@ export default function ProfileSetup({route, navigation}) {
   );
 }
 
-const styles = StyleSheet.create({
-  userProfileImg: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginVertical: 10,
-  },
-  usernameTitle: {
-    fontSize: 18,
-    fontWeight: "500",
-    color: "#647A91",
-    marginBottom: 10,
-  },
-  profileInput: {
-    width: "100%",
-    backgroundColor: "#fff",
-    marginBottom: 10,
-  },
-  twoBtnContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-  },
-});

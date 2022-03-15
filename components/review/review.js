@@ -3,7 +3,7 @@ import React from "react";
 import { globalStyles } from "../../styles/global";
 import { Rating, RatingProps } from "react-native-elements";
 
-export default function GuideReview({ review }) {
+export default function Review({ review }) {
   return (
     <View style={styles.reviewWrapper}>
       <Text style={globalStyles.greyText}>{review.body}</Text>

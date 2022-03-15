@@ -5,22 +5,33 @@ import {
   SimpleLineIcons,
   MaterialCommunityIcons,
   AntDesign,
-  FontAwesome5,Entypo
+  FontAwesome5,
+  Entypo,
 } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/global.js";
 
-export default function DestinationCard({handleNavigateBooking}) {
+export default function DestinationCard({ handleNavigateBooking, isEditing }) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
-  const [bookingStatus, setBookingStatus] = useState(1);
+  const [bookingStatus, setBookingStatus] = useState(0);
 
   return (
     <View style={styles.descriptionCardContainer}>
       <View style={{ alignItems: "center" }}>
-        <MaterialCommunityIcons
-          name="sign-direction"
-          size={24}
-          color="#FECF72"
-        />
+        {isEditing ? (
+          <Entypo
+            name="circle-with-cross"
+            size={24}
+            color="#DE4A4A"
+            onPress={() => console.log("remove card")}
+          />
+        ) : (
+          <MaterialCommunityIcons
+            name="sign-direction"
+            size={24}
+            color="#FECF72"
+          />
+        )}
+
         <Dash
           dashLength={6}
           dashGap={4}
@@ -75,7 +86,12 @@ export default function DestinationCard({handleNavigateBooking}) {
               <Text style={[globalStyles.btnText, styles.pendingText]}>
                 Pending
               </Text>
-              <Entypo name="cross" size={18} color="#DE4A4A" onPress={()=> setBookingStatus(0)} />
+              <Entypo
+                name="cross"
+                size={18}
+                color="#DE4A4A"
+                onPress={() => setBookingStatus(0)}
+              />
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
@@ -85,7 +101,12 @@ export default function DestinationCard({handleNavigateBooking}) {
               <Text style={[globalStyles.btnText, styles.guideText]}>
                 Tour Guide (0800 - 1000)
               </Text>
-              <Entypo name="cross" size={18} color="#DE4A4A" onPress={()=> setBookingStatus(0)} />
+              <Entypo
+                name="cross"
+                size={18}
+                color="#DE4A4A"
+                onPress={() => setBookingStatus(0)}
+              />
             </TouchableOpacity>
           )}
         </View>
@@ -145,7 +166,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 5,
   },
-  
+
   cardDescription: {
     color: "#647A91",
   },
@@ -153,7 +174,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   bookBtn: {
-    borderRadius: 12
+    borderRadius: 12,
   },
   guideText: {
     fontSize: 9.5,
@@ -166,10 +187,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 12,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   pendingText: {
     fontSize: 14,
     color: "#FF9900",
-  }
+  },
 });

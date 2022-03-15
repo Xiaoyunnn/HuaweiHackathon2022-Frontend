@@ -207,6 +207,11 @@ export const globalStyles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     paddingVertical: 7,
-  }
+  },
+  twoBtnContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // width: "100%",
+  },
   
 });

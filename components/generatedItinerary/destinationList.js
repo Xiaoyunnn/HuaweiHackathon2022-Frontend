@@ -7,6 +7,7 @@ import DestinationCard from "./destinationCard";
 export default function DestinationList({
   destinations,
   handleNavigateBooking,
+  isEditing
 }) {
   const numDays = 3;
   const [daySelected, setDaySelected] = useState(0);
@@ -26,6 +27,7 @@ export default function DestinationList({
               <DestinationCard
                 key={i}
                 handleNavigateBooking={handleNavigateBooking}
+                isEditing={isEditing}
               />
             ))}
           </View>

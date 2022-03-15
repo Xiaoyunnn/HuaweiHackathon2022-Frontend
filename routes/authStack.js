@@ -62,17 +62,6 @@ const AuthStack = () => {
       <Stack.Screen
         name="Guide Overview"
         component={GuideOverview}
-        // options={({ route, navigation }) => ({
-        //   headerLeft: () => (
-        //     <HeaderBackButton
-        //       label="Back"
-        //       labelVisible={true}
-        //       tintColor="#fff"
-        //       labelStyle={{ paddingLeft: 0}}
-        //       onPress={() => navigation.goBack()}
-        //     />
-        //   ),
-        // })}
       />
       <Stack.Screen name="Attraction Overview" component={AttractionOverview} />
       <Stack.Screen name="CreatePost" component={CreatePost} />

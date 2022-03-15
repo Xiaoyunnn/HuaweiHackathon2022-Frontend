@@ -39,7 +39,7 @@ export default function HomeStack() {
     >
       <Tab.Screen
         name={isGuide ? "Schedule" : "My Trips"}
-        component={isGuide ? Schedule : GeneratedItinerary}
+        component={isGuide ? Schedule : MyTrips}
         options={({ route, navigation }) => ({
           tabBarIcon: ({ focused, color, size }) =>
             isGuide ? (

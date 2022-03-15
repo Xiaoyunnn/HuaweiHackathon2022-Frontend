@@ -24,7 +24,7 @@ export default function Preferences({ route, navigation }) {
     { title: "Cultural", isSelected: false },
     { title: "Sporty", isSelected: false },
     { title: "Casual", isSelected: false },
-    { title: "Museumn", isSelected: false },
+    { title: "Museum", isSelected: false },
   ];
 
   const handleDataChange = (date, type) => {

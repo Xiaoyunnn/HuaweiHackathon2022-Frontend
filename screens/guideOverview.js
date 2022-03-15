@@ -1,16 +1,20 @@
-import { View, Text, ScrollView, StyleSheet } from "react-native";
-import React, { useLayoutEffect, useState } from "react";
-import GuideItem from "../components/guide/guideItem";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { globalStyles } from "../styles/global";
 import GuideItemInfo from "../components/guide/guideItemInfo";
 import Timeslot from "../components/guide/timeslot";
-import { Rating, RatingProps } from "react-native-elements";
-import RatingBar from "../components/guide/ratingBar";
-import GuideReview from "../components/guide/guideReview";
+import BottomBtn from "../components/bottomBtn";
+import ReviewSummary from "../components/review/reviewSummary";
 
 export default function GuideOverview({ route, navigation }) {
   // pass date from create itinerary page
-  console.log(route.params.guide);
+  // console.log(route.params.guide)
   const date = "3 Mar 2022";
   const timeslots = [
     "1100 - 1200",
@@ -50,34 +54,6 @@ export default function GuideOverview({ route, navigation }) {
     },
   ];
   const [selectTimeslot, setSelectTimeslot] = useState([]);
-  const [reviews, setReviews] = useState(sampleReviews);
-
-  const handleFilterReviews = (rating) => {
-    switch (rating) {
-      case 1:
-        setReviews(reviews.filter((item) => item.rating === 1));
-        return;
-
-      case 2:
-        setReviews(reviews.filter((item) => item.rating === 2));
-        return;
-
-      case 3:
-        setReviews(reviews.filter((item) => item.rating === 3));
-        return;
-
-      case 4:
-        setReviews(reviews.filter((item) => item.rating === 4));
-        return;
-
-      case 5:
-        setReviews(reviews.filter((item) => item.rating === 5));
-        return;
-
-      default:
-        return;
-    }
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -96,8 +72,8 @@ export default function GuideOverview({ route, navigation }) {
   };
 
   return (
-    <View style={globalStyles.tripsContainer}>
-      <ScrollView>
+    <View style={[globalStyles.tripsContainer, { paddingHorizontal: 0 }]}>
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 10 }}>
         <GuideItemInfo guide={route.params.guide} />
         <Text style={globalStyles.greyHeader}>Availability on {date}</Text>
         {timeslots.map((timeslot, i) => (
@@ -108,95 +84,17 @@ export default function GuideOverview({ route, navigation }) {
             handleToggleTimeslot={handleToggleTimeslot(timeslot)}
           />
         ))}
-        <Text style={globalStyles.greyHeader}>Review Summary</Text>
-        <View style={styles.ratingContainer}>
-          <View style={{ width: "60%", marginRight: 15 }}>
-            <RatingBar
-              rating={5}
-              width={"98%"}
-              handlePress={() => handleFilterReviews(5)}
-            />
-            <RatingBar
-              rating={4}
-              width={"80%"}
-              handlePress={() => handleFilterReviews(4)}
-            />
-            <RatingBar
-              rating={3}
-              width={"10%"}
-              handlePress={() => handleFilterReviews(3)}
-            />
-            <RatingBar
-              rating={2}
-              width={"5%"}
-              handlePress={() => handleFilterReviews(2)}
-            />
-            <RatingBar
-              rating={1}
-              width={"2%"}
-              handlePress={() => handleFilterReviews(1)}
-            />
-          </View>
-          <View style={{ justifyContent: "center", alignItems: "center" }}>
-            <Text style={styles.ratingNumBig}>{route.params.guide.rating}</Text>
-            <Rating
-              imageSize={20}
-              type="custom"
-              ratingColor="#FECF72"
-              readonly
-              fractions={1}
-              startingValue={route.params.guide.rating}
-            />
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Text style={styles.allReviewsText}>All Reviews &gt;&gt; </Text>
-          <Text style={styles.writeReviewText}>Write Review </Text>
-        </View>
-        <View style={styles.allReviewsContainer}>
-          {sampleReviews.map((review, i) => (
-            <GuideReview key={i} review={review} />
-          ))}
-        </View>
+        <ReviewSummary
+          sampleReviews={sampleReviews}
+          rating={route.params.guide.rating}
+        />
       </ScrollView>
+      <TouchableOpacity style={{ marginHorizontal: 10 }}>
+        <BottomBtn
+          action={"Book"}
+          handlePress={() => navigation.navigate("Generated Itinerary")}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  ratingContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    marginBottom: 8,
-  },
-  ratingNumBig: {
-    color: "#647A91",
-    fontWeight: "bold",
-    fontSize: 30,
-    marginBottom: 5,
-  },
-  allReviewsText: {
-    color: "#647A91",
-    fontWeight: "600",
-    fontSize: 14,
-    marginBottom: 5,
-  },
-
-  allReviewsContainer: {
-    borderTopColor: "#A3B3C5",
-    borderTopWidth: 1,
-    paddingBottom: 10,
-  },
-  writeReviewText: {
-    color: "#3683DE",
-    fontSize: 14,
-    marginBottom: 5,
-  },
-});
