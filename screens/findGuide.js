@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, ScrollView } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import Searchbar from "../components/searchbar/searchbar";
 import { globalStyles } from "../styles/global";
@@ -7,26 +7,30 @@ import GuideItem from "../components/guide/guideItem";
 export default function FindGuide({ navigation }) {
   const [searchInput, setSearchInput] = useState("");
   const [order, setOrder] = useState("rating");
-  const [sample, setSample] = useState([
-    { name: "alice", rating: 4.5, hourlyRates: 20 },
-    { name: "betty", rating: 4.2, hourlyRates: 10 },
-    { name: "carol", rating: 4.1, hourlyRates: 30 },
-    { name: "dave", rating: 4.0, hourlyRates: 30 },
-    { name: "elsa", rating: 4.5, hourlyRates: 40 },
-    { name: "felix", rating: 4.6, hourlyRates: 50 },
-    { name: "george", rating: 4.7, hourlyRates: 60 },
-    { name: "holger", rating: 4.8, hourlyRates: 70 },
-    { name: "ida", rating: 4.9, hourlyRates: 80 },
-    { name: "john", rating: 4.5, hourlyRates: 90 },
-    { name: "klare", rating: 4.5, hourlyRates: 35 },
-    { name: "luna", rating: 4.5, hourlyRates: 37 },
-  ].sort((a, b) => b.rating - a.rating));
-
-  const renderGuide = ({ item }) => (
-    <GuideItem guide={item} handleSelectGuide={handlePress} />
+  const [sample, setSample] = useState(
+    [
+      { name: "alice", rating: 4.5, hourlyRates: 20 },
+      { name: "betty", rating: 4.2, hourlyRates: 10 },
+      { name: "carol", rating: 4.1, hourlyRates: 30 },
+      { name: "dave", rating: 4.0, hourlyRates: 30 },
+      { name: "elsa", rating: 4.5, hourlyRates: 40 },
+      { name: "felix", rating: 4.6, hourlyRates: 50 },
+      { name: "george", rating: 4.7, hourlyRates: 60 },
+      { name: "holger", rating: 4.8, hourlyRates: 70 },
+      { name: "ida", rating: 4.9, hourlyRates: 80 },
+      { name: "john", rating: 4.5, hourlyRates: 90 },
+      { name: "klare", rating: 4.5, hourlyRates: 35 },
+      { name: "luna", rating: 4.5, hourlyRates: 37 },
+    ].sort((a, b) => b.rating - a.rating)
   );
 
+  const renderGuide = ({ item }) => {
+    return <GuideItem guide={item} handleSelectGuide={handlePress} />;
+  };
+
   const handlePress = (guide) => {
+    console.log("NAVIGATE");
+    console.log(guide);
     navigation.navigate("Guide Overview", {
       guide: guide,
     });
@@ -67,7 +71,6 @@ export default function FindGuide({ navigation }) {
         </Text>
       </View>
       <FlatList
-        // style={globalStyles.tripsContainer}
         data={sample}
         keyExtractor={(item) => item.name}
         renderItem={renderGuide}
