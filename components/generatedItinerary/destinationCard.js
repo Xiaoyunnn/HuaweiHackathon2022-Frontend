@@ -10,7 +10,7 @@ import {
 } from "@expo/vector-icons";
 import { globalStyles } from "../../styles/global.js";
 
-export default function DestinationCard({ handleNavigateBooking, isEditing }) {
+export default function DestinationCard({ handleNavigateBooking, isEditing, handleRemove }) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
   const [bookingStatus, setBookingStatus] = useState(0);
 
@@ -22,7 +22,7 @@ export default function DestinationCard({ handleNavigateBooking, isEditing }) {
             name="circle-with-cross"
             size={24}
             color="#DE4A4A"
-            onPress={() => console.log("remove card")}
+            onPress={handleRemove}
           />
         ) : (
           <MaterialCommunityIcons

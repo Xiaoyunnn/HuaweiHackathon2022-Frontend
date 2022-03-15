@@ -5,8 +5,6 @@ import RoutesHeaderBar from "../components/generatedItinerary/routesHeaderBar";
 import DestinationList from "../components/generatedItinerary/destinationList";
 
 export default function GeneratedItinerary({ route, navigation }) {
-  const [active, setActive] = useState(1);
-  const [isEditing, setIsEditing] = useState(false);
   const sampleDestination = [
     "Trick Eye Museum",
     "Universal Studios",
@@ -18,6 +16,9 @@ export default function GeneratedItinerary({ route, navigation }) {
     "Night Safari",
     "RWS",
   ];
+  const [active, setActive] = useState(1);
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedDestinations, setSelectedDestinations] = useState(sampleDestination);
 
   const handleActive = (index) => {
     setActive(index);
@@ -46,19 +47,22 @@ export default function GeneratedItinerary({ route, navigation }) {
     <View style={{ flex: 1, backgroundColor: "#FFFAFA" }}>
       {active == 1 ? (
         <DestinationList
-          destinations={sampleDestination}
+          destinations={selectedDestinations}
+          setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           isEditing={isEditing}
         />
       ) : active == 2 ? (
         <DestinationList
-          destinations={sampleDestination2}
+          destinations={selectedDestinations}
+          setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           isEditing={isEditing}
         />
       ) : (
         <DestinationList
-          destinations={sampleDestination}
+          destinations={selectedDestinations}
+          setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           isEditing={isEditing}
         />

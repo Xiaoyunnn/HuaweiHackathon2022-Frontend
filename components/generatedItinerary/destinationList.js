@@ -6,6 +6,7 @@ import DestinationCard from "./destinationCard";
 
 export default function DestinationList({
   destinations,
+  setSelectedDestinations,
   handleNavigateBooking,
   isEditing
 }) {
@@ -15,6 +16,20 @@ export default function DestinationList({
   const handleSelectDay = (day) => {
     setDaySelected(day);
     console.log(daySelected);
+  };
+
+  // const handleSelectDestination = (key) => () => {
+  //   if (!selectSearchAttraction.includes(key)) {
+  //     const arr = [...selectSearchAttraction, key];
+  //     setSelectSearchAttraction(arr);
+  //   }
+  // };
+
+  const handleRemoveDestination = (key) => () => {
+    const arr = destinations.filter(
+      (item) => item !== key
+    );
+    setSelectedDestinations(arr);
   };
 
   const renderSelectedDay = () => {
@@ -28,6 +43,7 @@ export default function DestinationList({
                 key={i}
                 handleNavigateBooking={handleNavigateBooking}
                 isEditing={isEditing}
+                handleRemove={handleRemoveDestination(destination)}
               />
             ))}
           </View>
