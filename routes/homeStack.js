@@ -11,6 +11,7 @@ import Schedule from "../screens/schedule";
 import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
 import { StyleSheet } from "react-native";
+import Loading from "../screens/loading";
 
 const Tab = createBottomTabNavigator();
 
@@ -49,13 +50,6 @@ export default function HomeStack() {
               <FontAwesome name="plane" size={24} color={color} />
             ),
           headerRight: () => (
-            // <HeaderRightAdd
-            //   isGuide={isGuide}
-            //   handlePressItinerary={() =>{
-            //     navigation.navigate("Create Itinerary")}
-            //   }
-            //   handlePressPost={() => navigation.navigate("CreatePost")}
-            // />
             <Ionicons
               name="ios-add-circle-outline"
               size={32}
