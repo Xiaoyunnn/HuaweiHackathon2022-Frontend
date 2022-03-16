@@ -10,7 +10,11 @@ import ProfileSetup from "../screens/profileSetup";
 import Schedule from "../screens/schedule";
 import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
+<<<<<<< HEAD
 import CreateItineraryBtn from "../components/createItineraryBtn";
+=======
+import { StyleSheet } from "react-native";
+>>>>>>> 9f954331a2473fc7b4636b3cb9ea1ab6c27c9dd1
 
 const Tab = createBottomTabNavigator();
 
@@ -49,12 +53,28 @@ export default function HomeStack() {
               <FontAwesome name="plane" size={24} color={color} />
             ),
           headerRight: () => (
+<<<<<<< HEAD
             <CreateItineraryBtn
               // isGuide={isGuide}
               handlePressItinerary={() =>{
                 navigation.navigate("Create Itinerary")}
               }
               // handlePressPost={() => navigation.navigate("CreatePost")}
+=======
+            // <HeaderRightAdd
+            //   isGuide={isGuide}
+            //   handlePressItinerary={() =>{
+            //     navigation.navigate("Create Itinerary")}
+            //   }
+            //   handlePressPost={() => navigation.navigate("CreatePost")}
+            // />
+            <Ionicons
+              name="ios-add-circle-outline"
+              size={32}
+              color="#fff"
+              style={styles.addBtn}
+              onPress={() => navigation.navigate("Create Itinerary")}
+>>>>>>> 9f954331a2473fc7b4636b3cb9ea1ab6c27c9dd1
             />
           ),
         })}
@@ -62,11 +82,20 @@ export default function HomeStack() {
       <Tab.Screen
         name="Explore"
         component={Explore}
-        options={{
+        options={({ route, navigation }) => ({
           tabBarIcon: ({ focused, color, size }) => (
             <FontAwesome name="map-o" size={20} color={color} />
           ),
-        }}
+          headerRight: () => (
+            <Ionicons
+              name="ios-add-circle-outline"
+              size={32}
+              color="#fff"
+              style={styles.addBtn}
+              onPress={() => navigation.navigate("Create Post")}
+            />
+          ),
+        })}
       />
       <Tab.Screen
         name="Notifications"
@@ -101,3 +130,10 @@ export default function HomeStack() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  addBtn: {
+    padding: 7,
+    zIndex: 2,
+  },
+});
