@@ -7,7 +7,7 @@ import DestinationList from "../components/generatedItinerary/destinationList";
 import { connect } from "react-redux";
 import { getGeneratedAttractions } from "../redux/actions/attractions";
 
-function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itineraries, attractions }) {
+function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attractions }) {
   const sampleDestination = [
     "Trick Eye Museum",
     "Universal Studios",
@@ -23,9 +23,10 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itiner
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDestinations, setSelectedDestinations] = useState(sampleDestination);
 
-  useEffect(() => {
-    getGeneratedAttractions(itineraries.days[0].attractions);
-  }, [getGeneratedAttractions])
+  console.log(route.params.itineraries);
+  // useEffect(() => {
+  //   getGeneratedAttractions(itineraries.days[0].attractions);
+  // }, [getGeneratedAttractions])
 
   const handleActive = (index) => {
     setActive(index);

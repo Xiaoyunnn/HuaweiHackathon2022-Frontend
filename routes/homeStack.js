@@ -10,11 +10,7 @@ import ProfileSetup from "../screens/profileSetup";
 import Schedule from "../screens/schedule";
 import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
-<<<<<<< HEAD
-import CreateItineraryBtn from "../components/createItineraryBtn";
-=======
 import { StyleSheet } from "react-native";
->>>>>>> 9f954331a2473fc7b4636b3cb9ea1ab6c27c9dd1
 
 const Tab = createBottomTabNavigator();
 
@@ -53,14 +49,6 @@ export default function HomeStack() {
               <FontAwesome name="plane" size={24} color={color} />
             ),
           headerRight: () => (
-<<<<<<< HEAD
-            <CreateItineraryBtn
-              // isGuide={isGuide}
-              handlePressItinerary={() =>{
-                navigation.navigate("Create Itinerary")}
-              }
-              // handlePressPost={() => navigation.navigate("CreatePost")}
-=======
             // <HeaderRightAdd
             //   isGuide={isGuide}
             //   handlePressItinerary={() =>{
@@ -74,7 +62,6 @@ export default function HomeStack() {
               color="#fff"
               style={styles.addBtn}
               onPress={() => navigation.navigate("Create Itinerary")}
->>>>>>> 9f954331a2473fc7b4636b3cb9ea1ab6c27c9dd1
             />
           ),
         })}

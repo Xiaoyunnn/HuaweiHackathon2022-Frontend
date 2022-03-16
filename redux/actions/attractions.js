@@ -1,7 +1,7 @@
 import {
     GET_ALL_ATTRACTIONS,
     GENERATED_ATTRACTION,
-    ATTRACTION_ERROR
+    ATTRACTION_ERROR,
 } from "./types";
 import axios from "axios";
 import { url } from "../../utils/constants";
@@ -10,7 +10,6 @@ const attUrl = url + "/attraction/";
 
 export const getAllAttractions = () => async dispatch => {
     try {
-        console.log(attUrl + "getAllAttractions")
         const res = await axios.get(attUrl + "getAllAttractions");
 
         console.log("DISPATCHED ATTRACTIONS");
@@ -35,7 +34,7 @@ export const getGeneratedAttractions = (arr) => async dispatch => {
         }
 
         dispatch({
-            type: GET_ATTRACTION_BY_ID,
+            type: GENERATED_ATTRACTION,
             payload: gen
         })
     } catch (err) {

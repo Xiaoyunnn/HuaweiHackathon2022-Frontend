@@ -10,7 +10,7 @@ import ExpectationInput from "../components/itinerary/expectationInput";
 import { connect } from "react-redux";
 import { generateItinerary } from "../redux/actions/itinerary";
 
-function Preferences({ route, navigation, nationality, age, generateItinerary, generated }) {
+function Preferences({ route, navigation, nationality, age, generateItinerary, generated, check }) {
   // console.log(route.params.attractionsArr);
   const ONE_DAY_IN_MS = 24 * 3600 * 1000;
   const minDate = new Date(); // Today
@@ -57,7 +57,7 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
   const handleSelect = (index) => () => {
     travelExpectations[index].isSelected =
       !travelExpectations[index].isSelected;
-    console.log(travelExpectations);
+    console.log(travelExpectations[index]);
   };
 
   const handleGenerate = () => {
@@ -71,6 +71,7 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
     const selectedExpectations = [];
     for (let i = 0; i < travelExpectations.length; i++) {
       if (travelExpectations[i].isSelected) {
+        console.log(travelExpectations[i].title.toUpperCase());
         selectedExpectations.push(travelExpectations[i].title.toUpperCase());
       }
     }
@@ -86,10 +87,10 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
     generateItinerary(body);
     navigation.navigate("Generated Itinerary", {
       itineraries: generated,
-      tripTitle: title,
-      numDays: numDays,
+      tripTitle: title
     });
   };
+  console.log("Itinerary state", check);
 
   return (
     <View style={globalStyles.tripsContainer}>
@@ -166,7 +167,8 @@ const mapStateToProps = state => {
   return {
     nationality: state.user.nationality,
     age: state.user.age,
-    generated: state.itinerary.generated
+    generated: state.itinerary.generated,
+    check: state.itinerary
   }
 }
 

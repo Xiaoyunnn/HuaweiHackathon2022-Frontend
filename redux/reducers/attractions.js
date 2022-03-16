@@ -7,7 +7,7 @@ import {
 const initialState = {
     all: [],
     generated: [],
-    error: null
+    error: null,
 }
 
 const attractions = (state = initialState, action) => {
@@ -23,7 +23,7 @@ const attractions = (state = initialState, action) => {
         case GENERATED_ATTRACTION:
             return {
                 ...state,
-                generated: payload
+                generated: payload,
             }
         case ATTRACTION_ERROR:
             return {

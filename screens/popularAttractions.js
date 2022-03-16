@@ -27,9 +27,7 @@ function PopularAttractions({ navigation, getAllAttractions, attractions, check 
   const recommendedAttraction = length => {
     return Math.floor(Math.random() * length);
   }
-
-  console.log(check);
-
+  
   const sampleData = [
     { attractionName: "Night Safari" },
     { attractionName: "sentosa" },
@@ -64,8 +62,6 @@ function PopularAttractions({ navigation, getAllAttractions, attractions, check 
       attractionsArr: attractionsArr,
     });
   };
-
-  console.log(attractions);
 
   return (
     <View style={globalStyles.tripsContainer}>

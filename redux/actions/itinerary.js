@@ -1,6 +1,7 @@
 import {
     GET_ITINERARY,
     GENERATE_ITINERARY,
+    LOADING_ITINERARY,
     ITINERARY_ERROR
 } from "./types";
 import axios from "axios";
@@ -26,6 +27,10 @@ export const getItinerary = id => async dispatch => {
 
 export const generateItinerary = body => async dispatch => {
     try {
+        dispatch({
+            type: LOADING_ITINERARY
+        })
+        console.log("LOADING ITINERARY");
         const res = await axios.post(baseUrl + "generateItinerary", body);
 
         dispatch({
