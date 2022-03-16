@@ -11,6 +11,7 @@ import Schedule from "../screens/schedule";
 import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
 import { StyleSheet } from "react-native";
+import Loading from "../screens/loading";
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ export default function HomeStack() {
     >
       <Tab.Screen
         name={isGuide ? "Schedule" : "My Trips"}
-        component={isGuide ? Schedule : MyTrips}
+        component={isGuide ? Schedule : Loading}
         options={({ route, navigation }) => ({
           tabBarIcon: ({ focused, color, size }) =>
             isGuide ? (

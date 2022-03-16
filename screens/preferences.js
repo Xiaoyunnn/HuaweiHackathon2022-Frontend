@@ -148,7 +148,6 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
           <Text style={styles.font18Orange}>Trip Title</Text>
           <View style={styles.numInputWrapper}>
             <TextInput
-              keyboardType="number-pad"
               style={styles.titleInput}
               onChangeText={setTitle}
               value={title}
