@@ -31,13 +31,17 @@ export const generateItinerary = body => async dispatch => {
             type: LOADING_ITINERARY
         })
         console.log("LOADING ITINERARY");
+
+        console.log("GENERATING ITINERARY");
         const res = await axios.post(baseUrl + "generateItinerary", body);
 
+        console.log("DONE");
         dispatch({
             type: GENERATE_ITINERARY,
             payload: res.data
         })
     } catch (err) {
+        console.log(err.message);
         dispatch({
             type: ITINERARY_ERROR,
             payload: err.message

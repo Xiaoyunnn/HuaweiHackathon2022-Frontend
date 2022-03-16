@@ -24,7 +24,7 @@ const itinerary = (state = initialState, action) => {
         case GENERATE_ITINERARY:
             return {
                 ...state,
-                generated: [payload],
+                generated: payload.days,
                 loading: false
             }
         case LOADING_ITINERARY:

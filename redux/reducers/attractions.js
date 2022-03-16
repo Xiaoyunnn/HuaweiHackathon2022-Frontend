@@ -21,9 +21,11 @@ const attractions = (state = initialState, action) => {
                 error: null
             }
         case GENERATED_ATTRACTION:
+            const generated = [...state.generated];
+            generated.push(payload);
             return {
                 ...state,
-                generated: payload,
+                generated: generated,
             }
         case ATTRACTION_ERROR:
             return {

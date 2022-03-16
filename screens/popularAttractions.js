@@ -27,7 +27,7 @@ function PopularAttractions({ navigation, getAllAttractions, attractions, check 
   const recommendedAttraction = length => {
     return Math.floor(Math.random() * length);
   }
-  
+
   const sampleData = [
     { attractionName: "Night Safari" },
     { attractionName: "sentosa" },
@@ -72,13 +72,18 @@ function PopularAttractions({ navigation, getAllAttractions, attractions, check 
         setSelectSearchAttraction={setSelectSearchAttraction}
         type={"attractions"}
       />
-      <Text style={styles.title}>You might want to go</Text>
+        <Text style={styles.title}>Popular Destinations</Text>
       <ScrollView
         contentContainerStyle={[
           globalStyles.adventuresContainer,
           { paddingBottom: 15 },
         ]}
       >
+        {/* <Text style={styles.title}>You might want to go</Text>
+        <AttractionCard 
+          handleSelect={handleSelect}
+          attraction={attraction[recommendedAttraction(attraction.length)]}
+        /> */}
         {attractions.map((data, i) => (
           <AttractionCard
             handleSelect={handleSelect}

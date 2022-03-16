@@ -6,8 +6,9 @@ import DestinationList from "../components/generatedItinerary/destinationList";
 
 import { connect } from "react-redux";
 import { getGeneratedAttractions } from "../redux/actions/attractions";
+import Loading from "./loading";
 
-function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attractions }) {
+function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attractions, generated, loading }) {
   const sampleDestination = [
     "Trick Eye Museum",
     "Universal Studios",
@@ -23,10 +24,17 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDestinations, setSelectedDestinations] = useState(sampleDestination);
 
-  console.log(route.params.itineraries);
-  // useEffect(() => {
-  //   getGeneratedAttractions(itineraries.days[0].attractions);
-  // }, [getGeneratedAttractions])
+  console.log("itineraries", attractions);
+  console.log("generated", generated);
+
+  useEffect(() => {
+    if (generated) {  
+      for (i = 0; i < generated.length; i++) {
+        console.log(generated[i]);
+        getGeneratedAttractions(generated[i].attractions);
+      }
+    }
+  }, [getGeneratedAttractions, generated])
 
   const handleActive = (index) => {
     setActive(index);
@@ -58,10 +66,14 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
     });
   }, [navigation, active]);
 
-  return (
+  if (loading) {
+    return <Loading />
+  } else {
+    return (
     <View style={{ flex: 1, backgroundColor: "#FFFAFA" }}>
       {active == 1 ? (
         <DestinationList
+          tripTitle={route.params.tripTitle}
           destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
@@ -70,6 +82,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
         />
       ) : active == 2 ? (
         <DestinationList
+          tripTitle={route.params.tripTitle}
           destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
@@ -78,6 +91,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
         />
       ) : (
         <DestinationList
+          tripTitle={route.params.tripTitle}
           destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
@@ -102,10 +116,13 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
     </View>
   );
 }
+}
 
 const mapStateToProps = state => {
   return {
-    attractions: state.attractions.generated
+    attractions: state.attractions.generated,
+    generated: state.itinerary.generated,
+    loading: state.itinerary.loading
   }
 };
 

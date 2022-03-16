@@ -5,6 +5,7 @@ import { globalStyles } from "../../styles/global";
 import DestinationCard from "./destinationCard";
 
 export default function DestinationList({
+  tripTitle,
   destinations,
   setSelectedDestinations,
   handleNavigateBooking,
@@ -53,7 +54,7 @@ export default function DestinationList({
         source={require("../../night-safari.jpeg")}
         style={styles.coverImg}
       />
-      <Text style={styles.tripTitle}>Family Trip</Text>
+      <Text style={styles.tripTitle}>{tripTitle}</Text>
       <Text style={styles.tripSubtitle}>3 Days | 8 attractions</Text>
       <DayTabBar
         numDays={numDays}

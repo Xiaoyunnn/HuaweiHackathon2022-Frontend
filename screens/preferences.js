@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TextInput, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { globalStyles } from "../styles/global";
 import DatePicker from "react-native-date-picker";
 import CalendarPicker from "react-native-calendar-picker";
@@ -10,7 +10,7 @@ import ExpectationInput from "../components/itinerary/expectationInput";
 import { connect } from "react-redux";
 import { generateItinerary } from "../redux/actions/itinerary";
 
-function Preferences({ route, navigation, nationality, age, generateItinerary, generated, check }) {
+function Preferences({ route, navigation, nationality, age, generateItinerary, generated, loading }) {
   // console.log(route.params.attractionsArr);
   const ONE_DAY_IN_MS = 24 * 3600 * 1000;
   const minDate = new Date(); // Today
@@ -18,7 +18,7 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
   const [endDate, setEndDate] = useState(null);
   const [numPeople, setNumPeople] = useState(1);
   const [title, setTitle] = useState("");
-  const travelExpectations = [
+  const [travelExpectations, setTravelExpectations] = useState([
     { title: "Family", isSelected: false },
     { title: "Kids", isSelected: false },
     { title: "Couple", isSelected: false },
@@ -28,7 +28,7 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
     { title: "Sporty", isSelected: false },
     { title: "Casual", isSelected: false },
     { title: "Museum", isSelected: false },
-  ];
+  ]);
 
   const handleDataChange = (date, type) => {
     if (type === "END_DATE") {
@@ -55,9 +55,10 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
   };
 
   const handleSelect = (index) => () => {
-    travelExpectations[index].isSelected =
-      !travelExpectations[index].isSelected;
-    console.log(travelExpectations[index]);
+      const newTE = [...travelExpectations];
+      newTE[index] = {...newTE[index], isSelected: true}
+      setTravelExpectations(newTE);
+    // console.log(travelExpectations);
   };
 
   const handleGenerate = () => {
@@ -71,7 +72,6 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
     const selectedExpectations = [];
     for (let i = 0; i < travelExpectations.length; i++) {
       if (travelExpectations[i].isSelected) {
-        console.log(travelExpectations[i].title.toUpperCase());
         selectedExpectations.push(travelExpectations[i].title.toUpperCase());
       }
     }
@@ -84,13 +84,12 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
       expectations: selectedExpectations
     }
 
+    console.log(body);
     generateItinerary(body);
     navigation.navigate("Generated Itinerary", {
-      itineraries: generated,
       tripTitle: title
     });
   };
-  console.log("Itinerary state", check);
 
   return (
     <View style={globalStyles.tripsContainer}>
@@ -167,7 +166,7 @@ const mapStateToProps = state => {
     nationality: state.user.nationality,
     age: state.user.age,
     generated: state.itinerary.generated,
-    check: state.itinerary
+    loading: state.itinerary.loading
   }
 }
 
