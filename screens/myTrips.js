@@ -28,15 +28,6 @@ function MyTrips({
     getAllAttractions();
   }, [getAllAttractions])
 
-  var attractionList = attractions.map(att => {
-    return <ItineraryCardSmall attraction={att} handlePress={handlePressAttraction}/>
-  });
-
-  const condRender = () => {
-    if (itinerary) {
-      return <ItineraryCard handleView={handleView}/>
-    }
-  }
   
   const handleView = (title) => () => {
     navigation.navigate("View Itinerary", {
@@ -48,6 +39,16 @@ function MyTrips({
     navigation.navigate("Attraction Overview", {
       attraction: name
     })
+  }
+  
+  var attractionList = attractions.map((att, i) => {
+    return <ItineraryCardSmall attraction={att} handlePress={handlePressAttraction} key={i} />
+  });
+
+  const condRender = () => {
+    if (itinerary) {
+      return <ItineraryCard handleView={handleView}/>
+    }
   }
   
   return (

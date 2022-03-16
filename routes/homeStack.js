@@ -10,6 +10,7 @@ import ProfileSetup from "../screens/profileSetup";
 import Schedule from "../screens/schedule";
 import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
+import CreateItineraryBtn from "../components/createItineraryBtn";
 
 const Tab = createBottomTabNavigator();
 
@@ -48,12 +49,12 @@ export default function HomeStack() {
               <FontAwesome name="plane" size={24} color={color} />
             ),
           headerRight: () => (
-            <HeaderRightAdd
-              isGuide={isGuide}
+            <CreateItineraryBtn
+              // isGuide={isGuide}
               handlePressItinerary={() =>{
                 navigation.navigate("Create Itinerary")}
               }
-              handlePressPost={() => navigation.navigate("CreatePost")}
+              // handlePressPost={() => navigation.navigate("CreatePost")}
             />
           ),
         })}

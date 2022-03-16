@@ -10,8 +10,10 @@ const attUrl = url + "/attraction/";
 
 export const getAllAttractions = () => async dispatch => {
     try {
-        const res = await axios.get(attUrl + "getAllAtrractions");
+        console.log(attUrl + "getAllAttractions")
+        const res = await axios.get(attUrl + "getAllAttractions");
 
+        console.log("DISPATCHED ATTRACTIONS");
         dispatch({
             type: GET_ALL_ATTRACTIONS,
             payload: res.data

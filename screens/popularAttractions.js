@@ -16,16 +16,19 @@ import AttractionCard from "../components/itinerary/attractionCard";
 import { connect } from 'react-redux';
 import { getAllAttractions } from "../redux/actions/attractions";
 
-function PopularAttractions({ navigation, getAllAttractions, attractions }) {
+function PopularAttractions({ navigation, getAllAttractions, attractions, check }) {
   const [attraction, setAttraction] = useState("");
 
   useEffect(() => {
+    console.log("getting attractions");
     getAllAttractions();
   }, [getAllAttractions])
 
   const recommendedAttraction = length => {
     return Math.floor(Math.random() * length);
   }
+
+  console.log(check);
 
   const sampleData = [
     { attractionName: "Night Safari" },
@@ -62,6 +65,8 @@ function PopularAttractions({ navigation, getAllAttractions, attractions }) {
     });
   };
 
+  console.log(attractions);
+
   return (
     <View style={globalStyles.tripsContainer}>
       <Searchbar
@@ -95,6 +100,7 @@ function PopularAttractions({ navigation, getAllAttractions, attractions }) {
 
 const mapStateToProps = state => {
   return {
+    check: state.attractions,
     attractions: state.attractions.all
   }
 };
