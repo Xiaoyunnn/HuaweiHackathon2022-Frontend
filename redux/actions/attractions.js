@@ -27,17 +27,21 @@ export const getAllAttractions = () => async dispatch => {
 
 export const getGeneratedAttractions = (arr) => async dispatch => {
     try {
+        console.log("GETTING GENERATED ATTRACTIONS");
+        console.log("array of attraction ids", arr);
         var gen = [];
         for (i = 0; i < arr.length; i++) {
-            const res = await axios.get(attUrl + "getAttractionById/" + id);
+            const res = await axios.get(attUrl + "getAttractionById/" + arr[i]);
             gen.push(res.data);
         }
 
+        console.log("generated", gen);
         dispatch({
             type: GENERATED_ATTRACTION,
             payload: gen
         })
     } catch (err) {
+        console.log(err.message);
         dispatch({
             type: ATTRACTION_ERROR,
             payload: err.message

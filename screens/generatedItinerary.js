@@ -24,13 +24,10 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDestinations, setSelectedDestinations] = useState(sampleDestination);
 
-  console.log("itineraries", attractions);
-  console.log("generated", generated);
-
   useEffect(() => {
     if (generated) {  
       for (i = 0; i < generated.length; i++) {
-        console.log(generated[i]);
+        // console.log("generated id", generated[i]);
         getGeneratedAttractions(generated[i].attractions);
       }
     }
@@ -80,7 +77,6 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
       {active == 1 ? (
         <DestinationList
           tripTitle={route.params.tripTitle}
-          destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           handleNavigateAttraction={handleNavigateAttraction}

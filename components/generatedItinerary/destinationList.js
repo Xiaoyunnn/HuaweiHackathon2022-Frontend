@@ -4,9 +4,11 @@ import DayTabBar from "./dayTabBar";
 import { globalStyles } from "../../styles/global";
 import DestinationCard from "./destinationCard";
 
-export default function DestinationList({
+import { connect } from "react-redux";
+
+function DestinationList({
   tripTitle,
-  destinations,
+  attractions,
   setSelectedDestinations,
   handleNavigateBooking,
   handleNavigateAttraction,
@@ -16,13 +18,15 @@ export default function DestinationList({
   const numDays = 3;
   const [daySelected, setDaySelected] = useState(0);
 
+  console.log("destination list", attractions);
+
   const handleSelectDay = (day) => {
     setDaySelected(day);
     console.log(daySelected);
   };
 
   const handleRemoveDestination = (key) => () => {
-    const arr = destinations.filter(
+    const arr = attractions.filter(
       (item) => item !== key
     );
     setSelectedDestinations(arr);
@@ -30,20 +34,22 @@ export default function DestinationList({
 
   const renderSelectedDay = () => {
     for (let i = 0; i < numDays; i++) {
-      if (i == daySelected) {
+      if (i == daySelected && attractions.length != 0) {
         // map the destination card for different days
         return (
           <View>
-            {destinations.map((destination, i) => (
-              <DestinationCard
+            {attractions[0].map((destination, i) => {
+              console.log("destination map", destination);
+              return <DestinationCard
                 key={i}
+                dest={destination}
                 handleNavigateBooking={handleNavigateBooking}
                 handleNavigateAttraction={handleNavigateAttraction}
                 handleNavigateHitch={handleNavigateHitch}
                 isEditing={isEditing}
                 handleRemove={handleRemoveDestination(destination)}
               />
-            ))}
+          })}
           </View>
         );
       }
@@ -67,6 +73,14 @@ export default function DestinationList({
     </ScrollView>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    attractions: state.attractions.generated
+  }
+}
+
+export default connect(mapStateToProps)(DestinationList);
 
 const styles = StyleSheet.create({
   coverImg: {

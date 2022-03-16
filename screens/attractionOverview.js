@@ -10,8 +10,12 @@ import {
 import IconsBar from "../components/generatedItinerary/iconsBar";
 import ReviewSummary from "../components/review/reviewSummary";
 
-export default function AttractionOverview({ route, navigation, attraction }) {
+export default function AttractionOverview({ route, navigation }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const dest = route.params.attraction;
+
+  console.log(dest);
+
   const sampleReviews = [
     {
       username: "alice",
@@ -50,11 +54,13 @@ export default function AttractionOverview({ route, navigation, attraction }) {
     });
   }, [navigation]);
 
+  const imageSrc = dest.imageUrls != null ? {uri: dest.imageUrls} : require("../night-safari.jpeg");
+
   return (
     <View style={{ flex: 1, backgroundColor: "#FFFAFA" }}>
       <ScrollView>
         <Image
-          source={require("../night-safari.jpeg")}
+          source={imageSrc}
           style={styles.coverImg}
         />
         <View style={{ paddingHorizontal: 15 }}>
@@ -93,10 +99,7 @@ export default function AttractionOverview({ route, navigation, attraction }) {
 
           <Text style={globalStyles.greyHeader}>About</Text>
           <Text style={globalStyles.greyText}>
-            Southeast Asia’s first and only Universal Studios theme park,
-            featuring 24 rides, shows and attractions in seven themed zones.
-            Test your nerves on the thrilling roller coasters, with themes
-            ranging from ancient Egypt to Jurassic Park.
+            {dest.about}
           </Text>
 
           <View style={styles.infoRowWrapper}>
@@ -106,7 +109,7 @@ export default function AttractionOverview({ route, navigation, attraction }) {
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>8 Sentosa Gateway, 098269</Text>
+            <Text style={globalStyles.greyText}>{dest.address ? dest.address : "8 Sentosa Gateway, 098269"}</Text>
           </View>
           <View style={styles.infoRowWrapper}>
             <MaterialCommunityIcons
@@ -124,7 +127,7 @@ export default function AttractionOverview({ route, navigation, attraction }) {
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore</Text>
+            <Text style={globalStyles.greyText}>{dest.websiteUrl ? dest.websiteUrl : "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore"}</Text>
           </View>
           <View style={[styles.infoRowWrapper, {marginBottom: 15}]}>
             <AntDesign
@@ -133,7 +136,7 @@ export default function AttractionOverview({ route, navigation, attraction }) {
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>+65 6577 8888</Text>
+            <Text style={globalStyles.greyText}>{dest.contactNumber ? dest.contactNumber : "+65 6577 8888"}</Text>
           </View>
           <ReviewSummary sampleReviews={sampleReviews} rating={4.6}/>
         </View>

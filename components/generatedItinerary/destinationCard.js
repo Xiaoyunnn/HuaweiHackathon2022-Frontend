@@ -12,6 +12,7 @@ import { globalStyles } from "../../styles/global.js";
 import IconsBar from "./iconsBar.js";
 
 export default function DestinationCard({
+  dest,
   handleNavigateBooking,
   handleNavigateAttraction,
   handleNavigateHitch,
@@ -20,6 +21,10 @@ export default function DestinationCard({
 }) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
   const [bookingStatus, setBookingStatus] = useState(0);
+
+
+  const imageSrc = dest.imageUrls != null ? {uri: dest.imageUrls} : require("../../night-safari.jpeg");
+
 
   return (
     <View style={styles.descriptionCardContainer}>
@@ -48,18 +53,17 @@ export default function DestinationCard({
       </View>
       <View style={styles.destinationCardWrapper}>
         <Image
-          source={require("../../night-safari.jpeg")}
+          source={imageSrc}
           style={styles.destinationImg}
         />
         <View style={styles.descriptionWrapper}>
           <TouchableOpacity
-            onPress={() => handleNavigateAttraction("Night Safari")}
+            onPress={() => handleNavigateAttraction(dest)}
           >
-            <Text style={styles.cardTitle}>Night Safari</Text>
+            <Text style={styles.cardTitle}>{dest.attractionName}</Text>
             <IconsBar rating={4.5} duration={"2h"} cost={30} />
             <Text style={styles.cardDescription} numberOfLines={3}>
-              Experience a mind-boggling world of 3D adventure at the Trick Eye
-              Museum in Singapore!
+              {dest.about}
             </Text>
           </TouchableOpacity>
 
@@ -67,7 +71,7 @@ export default function DestinationCard({
             <View>
               <TouchableOpacity
                 style={[globalStyles.btnContainerSq, styles.bookBtn]}
-                onPress={() => handleNavigateBooking("Night Safari")}
+                onPress={() => handleNavigateBooking("Night Safari", {dest: dest})}
               >
                 <Text style={[globalStyles.btnText, styles.bookText]}>
                   Book Tour Guide
