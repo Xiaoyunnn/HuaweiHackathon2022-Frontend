@@ -43,6 +43,12 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itiner
     })
   }
 
+  const handleNavigateHitch = (attraction) => {
+    navigation.navigate("Hitch a Group", {
+      attraction: attraction
+    })
+  }
+
   const handleConfirm = () => {
     console.log("confirm itinerary");
     navigation.navigate("My Trips")
@@ -65,6 +71,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itiner
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           handleNavigateAttraction={handleNavigateAttraction}
+          handleNavigateHitch={handleNavigateHitch}
           isEditing={isEditing}
         />
       ) : active == 2 ? (
@@ -73,6 +80,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itiner
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           handleNavigateAttraction={handleNavigateAttraction}
+          handleNavigateHitch={handleNavigateHitch}
           isEditing={isEditing}
         />
       ) : (
@@ -81,6 +89,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, itiner
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           handleNavigateAttraction={handleNavigateAttraction}
+          handleNavigateHitch={handleNavigateHitch}
           isEditing={isEditing}
         />
       )}
