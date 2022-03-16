@@ -2,7 +2,8 @@ import {
     GET_ITINERARY,
     GENERATE_ITINERARY,
     LOADING_ITINERARY,
-    ITINERARY_ERROR
+    ITINERARY_ERROR,
+    STORE_DATE,
 } from "./types";
 import axios from "axios";
 import { url } from "../../utils/constants";
@@ -47,5 +48,12 @@ export const generateItinerary = body => async dispatch => {
             payload: err.message
         })
     }
+}
+
+export const storeDate = date => dispatch => {
+    dispatch({
+        type: STORE_DATE,
+        payload: date
+    })
 }
 

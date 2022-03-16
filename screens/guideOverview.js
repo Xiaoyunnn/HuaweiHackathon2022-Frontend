@@ -12,10 +12,12 @@ import Timeslot from "../components/guide/timeslot";
 import BottomBtn from "../components/bottomBtn";
 import ReviewSummary from "../components/review/reviewSummary";
 
-export default function GuideOverview({ route, navigation }) {
+import { connect } from "react-redux";
+
+function GuideOverview({ route, navigation, date }) {
   // pass date from create itinerary page
-  console.log("find guide", route.params.attraction)
-  const date = "3 Mar 2022";
+  console.log("find guide", route.params.attraction);
+  
   const timeslots = [
     "1100 - 1200",
     "1200 - 1300",
@@ -98,3 +100,11 @@ export default function GuideOverview({ route, navigation }) {
     </View>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    date: state.itinerary.date
+  }
+}
+
+export default connect(mapStateToProps)(GuideOverview);

@@ -18,6 +18,7 @@ export default function DestinationCard({
   handleNavigateHitch,
   isEditing,
   handleRemove,
+  tripTitle
 }) {
   // 0 for book tour guide, 1 for pending booking, 2 for booked guide info
   const [bookingStatus, setBookingStatus] = useState(0);
@@ -71,7 +72,7 @@ export default function DestinationCard({
             <View>
               <TouchableOpacity
                 style={[globalStyles.btnContainerSq, styles.bookBtn]}
-                onPress={() => handleNavigateBooking("Night Safari", {dest: dest})}
+                onPress={() => handleNavigateBooking("Night Safari", {dest: dest, tripTitle: tripTitle})}
               >
                 <Text style={[globalStyles.btnText, styles.bookText]}>
                   Book Tour Guide

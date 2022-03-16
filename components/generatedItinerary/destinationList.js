@@ -4,6 +4,7 @@ import DayTabBar from "./dayTabBar";
 import DestinationCard from "./destinationCard";
 
 import { connect } from "react-redux";
+import RoutesHeaderBar from "./routesHeaderBar";
 
 function DestinationList({
   tripTitle,
@@ -39,6 +40,7 @@ function DestinationList({
               console.log("destination map", destination);
               return (
                 <DestinationCard
+                  tripTitle={tripTitle}
                   key={i}
                   dest={destination}
                   handleNavigateBooking={handleNavigateBooking}
@@ -56,7 +58,7 @@ function DestinationList({
   };
 
   const imageSrc =
-    attractions[0][0].imageUrls != null
+    attractions.length != 0 && attractions[0][0].imageUrls != null
       ? { uri: attractions[0][0].imageUrls }
       : require("../../night-safari.jpeg");
 

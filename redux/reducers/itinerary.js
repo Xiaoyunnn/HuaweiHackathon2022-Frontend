@@ -2,11 +2,13 @@ import {
     ITINERARY_ERROR,
     GET_ITINERARY,
     LOADING_ITINERARY,
-    GENERATE_ITINERARY
+    GENERATE_ITINERARY,
+    STORE_DATE
 } from "../actions/types";
 
 const initialState = {
     current: null,
+    date: null,
     generated: [],
     error: null,
     loading: false
@@ -36,6 +38,11 @@ const itinerary = (state = initialState, action) => {
             return {
                 ...state,
                 error: payload
+            }
+        case STORE_DATE:
+            return {
+                ...state,
+                date: payload
             }
         default:
             return state;

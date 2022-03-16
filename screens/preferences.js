@@ -8,9 +8,9 @@ import BottomBtn from "../components/bottomBtn";
 import ExpectationInput from "../components/itinerary/expectationInput";
 
 import { connect } from "react-redux";
-import { generateItinerary } from "../redux/actions/itinerary";
+import { generateItinerary, storeDate } from "../redux/actions/itinerary";
 
-function Preferences({ route, navigation, nationality, age, generateItinerary, generated, loading }) {
+function Preferences({ route, navigation, nationality, age, generateItinerary, storeDate }) {
   // console.log(route.params.attractionsArr);
   const ONE_DAY_IN_MS = 24 * 3600 * 1000;
   const minDate = new Date(); // Today
@@ -85,6 +85,7 @@ function Preferences({ route, navigation, nationality, age, generateItinerary, g
     }
 
     console.log(body);
+    storeDate((new Date(startDate)).toDateString());
     generateItinerary(body);
     navigation.navigate("Generated Itinerary", {
       tripTitle: title
@@ -170,7 +171,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { generateItinerary })(Preferences);
+export default connect(mapStateToProps, { generateItinerary, storeDate })(Preferences);
 
 const styles = StyleSheet.create({
   preferenceInputContainer: {
