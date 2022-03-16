@@ -10,6 +10,7 @@ export default function DestinationList({
   setSelectedDestinations,
   handleNavigateBooking,
   handleNavigateAttraction,
+  handleNavigateHitch,
   isEditing
 }) {
   const numDays = 3;
@@ -38,6 +39,7 @@ export default function DestinationList({
                 key={i}
                 handleNavigateBooking={handleNavigateBooking}
                 handleNavigateAttraction={handleNavigateAttraction}
+                handleNavigateHitch={handleNavigateHitch}
                 isEditing={isEditing}
                 handleRemove={handleRemoveDestination(destination)}
               />

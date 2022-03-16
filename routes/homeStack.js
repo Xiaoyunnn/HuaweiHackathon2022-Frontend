@@ -12,6 +12,7 @@ import Preferences from "../screens/preferences";
 import GeneratedItinerary from "../screens/generatedItinerary";
 import { StyleSheet } from "react-native";
 import Loading from "../screens/loading";
+import HitchGroup from "../screens/hitchGroup";
 
 const Tab = createBottomTabNavigator();
 

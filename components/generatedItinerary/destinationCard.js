@@ -14,6 +14,7 @@ import IconsBar from "./iconsBar.js";
 export default function DestinationCard({
   handleNavigateBooking,
   handleNavigateAttraction,
+  handleNavigateHitch,
   isEditing,
   handleRemove,
 }) {
@@ -51,25 +52,11 @@ export default function DestinationCard({
           style={styles.destinationImg}
         />
         <View style={styles.descriptionWrapper}>
-          <TouchableOpacity onPress={() => handleNavigateAttraction("Night Safari")}>
+          <TouchableOpacity
+            onPress={() => handleNavigateAttraction("Night Safari")}
+          >
             <Text style={styles.cardTitle}>Night Safari</Text>
-            {/* <View style={styles.iconsWrapper}>
-              <AntDesign name="star" size={16} color="#FECF72" />
-              <Text style={globalStyles.ratingText}>4.5</Text>
-              <MaterialCommunityIcons
-                name="clock-time-two"
-                size={16}
-                color="#A3B3C5"
-              />
-              <Text style={globalStyles.durationText}>2h</Text>
-              <MaterialCommunityIcons
-                name="cash-usd-outline"
-                size={20}
-                color="#52AA6B"
-              />
-              <Text style={globalStyles.costText}>$30</Text>
-            </View> */}
-            <IconsBar rating={4.5} duration={"2h"} cost={30}/>
+            <IconsBar rating={4.5} duration={"2h"} cost={30} />
             <Text style={styles.cardDescription} numberOfLines={3}>
               Experience a mind-boggling world of 3D adventure at the Trick Eye
               Museum in Singapore!
@@ -77,44 +64,74 @@ export default function DestinationCard({
           </TouchableOpacity>
 
           {bookingStatus == 0 ? (
-            <TouchableOpacity
-              style={[globalStyles.btnContainerSq, styles.bookBtn]}
-              onPress={() => handleNavigateBooking("Night Safari")}
-            >
-              <Text style={[globalStyles.btnText, styles.bookText]}>
-                Book Tour Guide
-              </Text>
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity
+                style={[globalStyles.btnContainerSq, styles.bookBtn]}
+                onPress={() => handleNavigateBooking("Night Safari")}
+              >
+                <Text style={[globalStyles.btnText, styles.bookText]}>
+                  Book Tour Guide
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[globalStyles.btnContainerAlt, styles.hitchBtn]}
+                onPress={() => handleNavigateHitch("Night Safari")}
+              >
+                <Text style={[globalStyles.btnText, styles.pendingText]}>
+                  Hitch a Group
+                </Text>
+              </TouchableOpacity>
+            </View>
           ) : bookingStatus == 1 ? (
-            <TouchableOpacity
-              style={[globalStyles.btnContainerSqAlt, styles.guideBtn]}
-              // onPress={handlePress}
-            >
-              <Text style={[globalStyles.btnText, styles.pendingText]}>
-                Pending
-              </Text>
-              <Entypo
-                name="cross"
-                size={18}
-                color="#DE4A4A"
-                onPress={() => setBookingStatus(0)}
-              />
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity
+                style={[globalStyles.btnContainerSqAlt, styles.guideBtn]}
+                // onPress={handlePress}
+              >
+                <Text style={[globalStyles.btnText, styles.pendingText]}>
+                  Pending
+                </Text>
+                <Entypo
+                  name="cross"
+                  size={18}
+                  color="#DE4A4A"
+                  onPress={() => setBookingStatus(0)}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[globalStyles.btnContainerAlt, styles.hitchBtn]}
+                onPress={() => handleNavigateHitch("Night Safari")}
+              >
+                <Text style={[globalStyles.btnText, styles.pendingText]}>
+                  Hitch a Group
+                </Text>
+              </TouchableOpacity>
+            </View>
           ) : (
-            <TouchableOpacity
-              style={[globalStyles.btnContainerSqAlt, styles.guideBtn]}
-              // onPress={handlePress}
-            >
-              <Text style={[globalStyles.btnText, styles.guideText]}>
-                Tour Guide (0800 - 1000)
-              </Text>
-              <Entypo
-                name="cross"
-                size={18}
-                color="#DE4A4A"
-                onPress={() => setBookingStatus(0)}
-              />
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity
+                style={[globalStyles.btnContainerSqAlt, styles.guideBtn]}
+                // onPress={handlePress}
+              >
+                <Text style={[globalStyles.btnText, styles.guideText]}>
+                  Tour Guide (0800 - 1000)
+                </Text>
+                <Entypo
+                  name="cross"
+                  size={18}
+                  color="#DE4A4A"
+                  onPress={() => setBookingStatus(0)}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[globalStyles.btnContainerAlt, styles.hitchBtn]}
+                onPress={() => handleNavigateHitch("Night Safari")}
+              >
+                <Text style={[globalStyles.btnText, styles.pendingText]}>
+                  Hitch a Group
+                </Text>
+              </TouchableOpacity>
+            </View>
           )}
         </View>
       </View>
@@ -125,7 +142,7 @@ export default function DestinationCard({
 const styles = StyleSheet.create({
   dash: {
     width: 1,
-    height: 160,
+    height: 200,
     flexDirection: "column",
   },
   descriptionCardContainer: {
@@ -150,7 +167,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
     width: "92%",
-    height: 180,
+    height: 220,
   },
   destinationImg: {
     height: "100%",
@@ -168,15 +185,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 5,
   },
-  
+
   cardDescription: {
     color: "#647A91",
   },
   bookText: {
     fontSize: 14,
+    textAlign: "center",
   },
   bookBtn: {
     borderRadius: 12,
+    paddingVertical: 9
   },
   guideText: {
     fontSize: 9.5,
@@ -190,6 +209,15 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  hitchBtn: {
+    paddingVertical: 8,
+    paddingLeft: 8,
+    paddingRight: 5,
+    alignItems: "center",
+    borderRadius: 12,
+    flexDirection: "row",
+    justifyContent: "center",
   },
   pendingText: {
     fontSize: 14,

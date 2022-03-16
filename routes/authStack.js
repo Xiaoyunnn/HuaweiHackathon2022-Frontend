@@ -14,6 +14,7 @@ import GuideOverview from "../screens/guideOverview";
 import AttractionOverview from "../screens/attractionOverview";
 import { HeaderBackButton } from "@react-navigation/elements";
 import ViewItinerary from "../screens/viewItinerary";
+import HitchGroup from "../screens/hitchGroup";
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +66,7 @@ const AuthStack = () => {
       />
       <Stack.Screen name="Attraction Overview" component={AttractionOverview} />
       <Stack.Screen name="View Itinerary" component={ViewItinerary} />
+      <Stack.Screen name="Hitch a Group" component={HitchGroup} />
       <Stack.Screen name="Create Post" component={CreatePost} />
     </Stack.Navigator>
   );
