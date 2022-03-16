@@ -65,7 +65,7 @@ const AuthStack = () => {
       />
       <Stack.Screen name="Attraction Overview" component={AttractionOverview} />
       <Stack.Screen name="View Itinerary" component={ViewItinerary} />
-      <Stack.Screen name="CreatePost" component={CreatePost} />
+      <Stack.Screen name="Create Post" component={CreatePost} />
     </Stack.Navigator>
   );
 };
