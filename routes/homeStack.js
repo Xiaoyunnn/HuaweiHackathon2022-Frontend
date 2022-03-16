@@ -41,7 +41,7 @@ export default function HomeStack() {
     >
       <Tab.Screen
         name={isGuide ? "Schedule" : "My Trips"}
-        component={isGuide ? Schedule : Loading}
+        component={isGuide ? Schedule : MyTrips}
         options={({ route, navigation }) => ({
           tabBarIcon: ({ focused, color, size }) =>
             isGuide ? (
@@ -50,13 +50,6 @@ export default function HomeStack() {
               <FontAwesome name="plane" size={24} color={color} />
             ),
           headerRight: () => (
-            // <HeaderRightAdd
-            //   isGuide={isGuide}
-            //   handlePressItinerary={() =>{
-            //     navigation.navigate("Create Itinerary")}
-            //   }
-            //   handlePressPost={() => navigation.navigate("CreatePost")}
-            // />
             <Ionicons
               name="ios-add-circle-outline"
               size={32}
