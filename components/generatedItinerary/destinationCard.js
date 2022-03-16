@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
     width: "92%",
-    height: 220,
+    height: 225,
   },
   destinationImg: {
     height: "100%",

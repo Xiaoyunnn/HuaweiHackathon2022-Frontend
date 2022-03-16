@@ -50,19 +50,19 @@ export default function AttractionOverview({ route, navigation }) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: route.params.attraction,
+      headerTitle: route.params.attraction.attractionName,
     });
   }, [navigation]);
 
-  const imageSrc = dest.imageUrls != null ? {uri: dest.imageUrls} : require("../night-safari.jpeg");
+  const imageSrc =
+    dest.imageUrls != null
+      ? { uri: dest.imageUrls }
+      : require("../night-safari.jpeg");
 
   return (
     <View style={{ flex: 1, backgroundColor: "#FFFAFA" }}>
       <ScrollView>
-        <Image
-          source={imageSrc}
-          style={styles.coverImg}
-        />
+        <Image source={imageSrc} style={styles.coverImg} />
         <View style={{ paddingHorizontal: 15 }}>
           <View style={styles.tagsContainer}>
             {isBookmarked ? (
@@ -83,24 +83,13 @@ export default function AttractionOverview({ route, navigation }) {
               />
             )}
             <View style={styles.tagWrapper}>
-              <Text style={styles.tagText}>Theme Park</Text>
-            </View>
-            <View style={styles.tagWrapper}>
-              <Text style={styles.tagText}>Adventural</Text>
-            </View>
-            <View style={styles.tagWrapper}>
-              <Text style={styles.tagText}>Adventural</Text>
-            </View>
-            <View style={styles.tagWrapper}>
               <Text style={styles.tagText}>Adventural</Text>
             </View>
           </View>
           <IconsBar rating={4.5} duration={"2h"} cost={30} />
 
           <Text style={globalStyles.greyHeader}>About</Text>
-          <Text style={globalStyles.greyText}>
-            {dest.about}
-          </Text>
+          <Text style={globalStyles.greyText}>{dest.about}</Text>
 
           <View style={styles.infoRowWrapper}>
             <SimpleLineIcons
@@ -109,7 +98,9 @@ export default function AttractionOverview({ route, navigation }) {
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>{dest.address ? dest.address : "8 Sentosa Gateway, 098269"}</Text>
+            <Text style={globalStyles.greyText}>
+              {dest.location ? dest.location : "8 Sentosa Gateway, 098269"}
+            </Text>
           </View>
           <View style={styles.infoRowWrapper}>
             <MaterialCommunityIcons
@@ -118,7 +109,7 @@ export default function AttractionOverview({ route, navigation }) {
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>Open Now: 12pm - 7pm</Text>
+            <Text style={globalStyles.greyText}>{dest.operatingHours ? dest.operatingHours : "Daily 1000 - 2000"}</Text>
           </View>
           <View style={styles.infoRowWrapper}>
             <MaterialCommunityIcons
@@ -127,18 +118,24 @@ export default function AttractionOverview({ route, navigation }) {
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>{dest.websiteUrl ? dest.websiteUrl : "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore"}</Text>
+            <Text style={globalStyles.greyText}>
+              {dest.websiteUrl
+                ? dest.websiteUrl
+                : "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore"}
+            </Text>
           </View>
-          <View style={[styles.infoRowWrapper, {marginBottom: 15}]}>
+          <View style={[styles.infoRowWrapper, { marginBottom: 15 }]}>
             <AntDesign
               name="mobile1"
               size={22}
               color="#647A91"
               style={{ marginRight: 10 }}
             />
-            <Text style={globalStyles.greyText}>{dest.contactNumber ? dest.contactNumber : "+65 6577 8888"}</Text>
+            <Text style={globalStyles.greyText}>
+              {dest.contactNumber ? dest.contactNumber : "+65 6577 8888"}
+            </Text>
           </View>
-          <ReviewSummary sampleReviews={sampleReviews} rating={4.6}/>
+          <ReviewSummary sampleReviews={sampleReviews} rating={4.6} />
         </View>
       </ScrollView>
     </View>
@@ -174,6 +171,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 10,
-    width: "95%"
+    width: "95%",
   },
 });

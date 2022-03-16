@@ -17,11 +17,16 @@ export default function AttractionCard({isSelected, handleSelect, index, attract
     setSelected(!selected);
   }
 
+  const imageSrc =
+    attraction.imageUrls != null
+      ? { uri: attraction.imageUrls }
+      : require("../../ussv2.jpeg");
+
   return (
     <TouchableWithoutFeedback onPress={toggleSelect}>
       <View style={styles.attractionWrapper}>
         <Image
-          source={require("../../night-safari.jpeg")}
+          source={imageSrc}
           style={styles.attractionImg}
         />
         <Text style={styles.attractionText}>{attraction.attractionName}</Text>

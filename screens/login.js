@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import validator from "validator";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 import { connect } from "react-redux";
@@ -28,11 +28,11 @@ function Login({ navigation, loginUser, getUser, user }) {
     } else {
       Alert.alert("Invalid Credentials", user.error);
     }
-  }, [getUser, user.userId, user.token, user.error])
+  }, [getUser, user.userId, user.token, user.error]);
 
   const submitLogin = () => {
-      const body = { name: loginName, password: loginPassword};
-      loginUser(body);
+    const body = { name: loginName, password: loginPassword };
+    loginUser(body);
   };
 
   return (
@@ -41,7 +41,14 @@ function Login({ navigation, loginUser, getUser, user }) {
         <Text style={globalStyles.titleText}>Login to Reisen.</Text>
         <View style={globalStyles.inputWrapper}>
           <View style={globalStyles.iconWrapper}>
-            <MaterialIcons name="email" size={20} color="#d4af95" />
+            <FontAwesome5
+              name="user-alt"
+              size={18}
+              color="#d4af95"
+              style={{
+                marginLeft: 2,
+              }}
+            />
           </View>
           <TextInput
             //keyboardType="email-address"
@@ -93,15 +100,15 @@ function Login({ navigation, loginUser, getUser, user }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
   };
 };
 
 export default connect(mapStateToProps, {
   loginUser,
-  getUser
+  getUser,
 })(Login);
 
 // const styles = stylesheet.create({

@@ -1,7 +1,6 @@
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import React, { useState } from "react";
 import DayTabBar from "./dayTabBar";
-import { globalStyles } from "../../styles/global";
 import DestinationCard from "./destinationCard";
 
 import { connect } from "react-redux";
@@ -13,9 +12,9 @@ function DestinationList({
   handleNavigateBooking,
   handleNavigateAttraction,
   handleNavigateHitch,
-  isEditing
+  isEditing,
 }) {
-  const numDays = 3;
+  const numDays = 1;
   const [daySelected, setDaySelected] = useState(0);
 
   console.log("destination list", attractions);
@@ -26,9 +25,7 @@ function DestinationList({
   };
 
   const handleRemoveDestination = (key) => () => {
-    const arr = attractions.filter(
-      (item) => item !== key
-    );
+    const arr = attractions.filter((item) => item !== key);
     setSelectedDestinations(arr);
   };
 
@@ -40,30 +37,34 @@ function DestinationList({
           <View>
             {attractions[0].map((destination, i) => {
               console.log("destination map", destination);
-              return <DestinationCard
-                key={i}
-                dest={destination}
-                handleNavigateBooking={handleNavigateBooking}
-                handleNavigateAttraction={handleNavigateAttraction}
-                handleNavigateHitch={handleNavigateHitch}
-                isEditing={isEditing}
-                handleRemove={handleRemoveDestination(destination)}
-              />
-          })}
+              return (
+                <DestinationCard
+                  key={i}
+                  dest={destination}
+                  handleNavigateBooking={handleNavigateBooking}
+                  handleNavigateAttraction={handleNavigateAttraction}
+                  handleNavigateHitch={handleNavigateHitch}
+                  isEditing={isEditing}
+                  handleRemove={handleRemoveDestination(destination)}
+                />
+              );
+            })}
           </View>
         );
       }
     }
   };
 
+  const imageSrc =
+    attractions[0][0].imageUrls != null
+      ? { uri: attractions[0][0].imageUrls }
+      : require("../../night-safari.jpeg");
+
   return (
     <ScrollView>
-      <Image
-        source={require("../../night-safari.jpeg")}
-        style={styles.coverImg}
-      />
+      <Image source={imageSrc} style={styles.coverImg} />
       <Text style={styles.tripTitle}>{tripTitle}</Text>
-      <Text style={styles.tripSubtitle}>3 Days | 8 attractions</Text>
+      {/* <Text style={styles.tripSubtitle}>3 Days | 8 attractions</Text> */}
       <DayTabBar
         numDays={numDays}
         daySelected={daySelected}
@@ -74,11 +75,11 @@ function DestinationList({
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    attractions: state.attractions.generated
-  }
-}
+    attractions: state.attractions.generated,
+  };
+};
 
 export default connect(mapStateToProps)(DestinationList);
 

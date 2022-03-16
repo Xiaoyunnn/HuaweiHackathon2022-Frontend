@@ -4,7 +4,7 @@ import Searchbar from "../components/searchbar/searchbar";
 import { globalStyles } from "../styles/global";
 import GuideItem from "../components/guide/guideItem";
 
-export default function FindGuide({ navigation }) {
+export default function FindGuide({ navigation, route }) {
   const [searchInput, setSearchInput] = useState("");
   const [order, setOrder] = useState("rating");
   const [sample, setSample] = useState(
@@ -33,6 +33,7 @@ export default function FindGuide({ navigation }) {
     console.log(guide);
     navigation.navigate("Guide Overview", {
       guide: guide,
+      attraction: route.params.attraction
     });
   };
 

@@ -16,10 +16,13 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "#FBF1F1",
     marginBottom: 10,
     flexDirection: "row",
+    alignItems: "center"
   },
   iconWrapper: {
     marginRight: 7,
     paddingVertical: 13,
+    justifyContent:"center",
+    alignItems: "center"
   },
   input: {
     paddingVertical: 13,

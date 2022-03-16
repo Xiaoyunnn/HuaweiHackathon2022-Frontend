@@ -14,12 +14,6 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
     "Universal Studios",
     "Night Safari",
   ];
-  const sampleDestination2 = [
-    "Trick Eye Museum",
-    "Universal Studios",
-    "Night Safari",
-    "RWS",
-  ];
   const [active, setActive] = useState(1);
   const [isEditing, setIsEditing] = useState(false);
   const [selectedDestinations, setSelectedDestinations] = useState(sampleDestination);
@@ -70,7 +64,7 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
   }, [navigation, active]);
 
   if (loading) {
-    return <Loading />
+    return <Loading description={"Generating a fantastic itinerary specially for you!"} />
   } else {
     return (
     <View style={{ flex: 1, backgroundColor: "#FFFAFA" }}>
@@ -86,7 +80,6 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
       ) : active == 2 ? (
         <DestinationList
           tripTitle={route.params.tripTitle}
-          destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           handleNavigateAttraction={handleNavigateAttraction}
@@ -96,7 +89,6 @@ function GeneratedItinerary({ route, navigation, getGeneratedAttractions, attrac
       ) : (
         <DestinationList
           tripTitle={route.params.tripTitle}
-          destinations={selectedDestinations}
           setSelectedDestinations={setSelectedDestinations}
           handleNavigateBooking={handleNavigateBooking}
           handleNavigateAttraction={handleNavigateAttraction}

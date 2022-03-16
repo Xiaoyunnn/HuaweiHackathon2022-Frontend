@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import validator from "validator";
-import { MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
 
@@ -35,11 +35,11 @@ function Signup({ navigation, signupUser, loginUser, user }) {
       const body = {
         name: username,
         password: signupPassword,
-        nationality: nationality
-      }
+        nationality: nationality,
+      };
       signupUser(body);
       if (user.error) {
-        Alert.alert("Invalid", user.error)
+        Alert.alert("Invalid", user.error);
       } else {
         loginUser({ name: body.name, password: body.password });
         navigation.navigate("Home");
@@ -75,8 +75,8 @@ function Signup({ navigation, signupUser, loginUser, user }) {
 
         <View style={globalStyles.inputWrapper}>
           <View style={globalStyles.iconWrapper}>
-            <FontAwesome5
-              name="user-alt"
+            <FontAwesome
+              name="flag"
               size={18}
               color="#d4af95"
               style={{
@@ -164,11 +164,11 @@ function Signup({ navigation, signupUser, loginUser, user }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    user: state.user
-  }
-}
+    user: state.user,
+  };
+};
 
 export default connect(mapStateToProps, { signupUser, loginUser })(Signup);
 

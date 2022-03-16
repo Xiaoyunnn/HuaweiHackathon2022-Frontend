@@ -14,7 +14,7 @@ import ReviewSummary from "../components/review/reviewSummary";
 
 export default function GuideOverview({ route, navigation }) {
   // pass date from create itinerary page
-  // console.log(route.params.guide)
+  console.log("find guide", route.params.attraction)
   const date = "3 Mar 2022";
   const timeslots = [
     "1100 - 1200",

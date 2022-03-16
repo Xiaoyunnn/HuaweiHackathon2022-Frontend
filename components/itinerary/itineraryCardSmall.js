@@ -11,11 +11,16 @@ import React from "react";
 import { globalStyles } from "../../styles/global";
 
 export default function ItineraryCardSmall({handlePress, attraction}) {
+  const imageSrc =
+    attraction.imageUrls != null
+      ? { uri: attraction.imageUrls }
+      : require("../../ussv2.jpeg");
+
   return (
-    <TouchableWithoutFeedback onPress={handlePress("Universal Studios Singapore")}>
+    <TouchableWithoutFeedback onPress={handlePress}>
       <View style={styles.ItineraryCardSmallContainer}>
         <Image
-          source={require("../../ussv2.jpeg")}
+          source={imageSrc}
           style={globalStyles.itineraryImageSmall}
         />
         <Text style={styles.newAdventureTitle}>
